@@ -3,14 +3,15 @@
     <link rel="stylesheet" href="{{ asset('css/login/index.css') }}">
     <style>
         body {
-            background-image: url("{{ asset('img/logo-kemnaker-biru.png') }}") !important;
-            background-position: 350px 130px;
-            background-repeat: repeat;
-            background-size: 150px;
-            background-color: rgba(255,255,255,0.8);
-            background-blend-mode: lighten;
+            background-image: url("{{ asset('img/bg-kemnaker.png') }}") !important;
+            background-size: cover;
+            /*background-position: 350px 130px;*/
+            /*background-repeat: repeat;*/
+            /*background-size: 150px;*/
+            /*background-color: rgba(255,255,255,0.8);*/
+            /*background-blend-mode: lighten;*/
 
-            background-origin: content-box;
+            /*background-origin: content-box;*/
         }
 
         .username::after {
