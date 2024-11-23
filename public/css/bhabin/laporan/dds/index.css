@@ -1,0 +1,38 @@
+ 
+        footer{
+            position : fixed;
+            bottom: 0;
+            width:100%;
+        }
+            
+        .box{
+            cursor : pointer;
+        }
+        
+        .box i , .box h5 {
+            transition : .3s;
+            color : #BACDEF;
+        }
+        
+        .box:hover i , .box:hover h5 {
+            color:#fff;
+            transition : .3s;
+        }
+        
+        
+        
+        @media screen and ( max-width : 1199px){
+             footer{
+                position:relative;
+            }
+        }
+        
+        @media screen and ( max-width:768px){
+            .box{
+                width : 100% !important;
+                height: 100% !important;
+            }
+            
+           
+        }
+    

@@ -1,0 +1,192 @@
+body{
+    background: rgb(208, 229, 242);
+    overflow-x: hidden;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+/* top nav */
+nav{
+    background: #274C77;
+    padding: 10px 0;
+}
+
+
+#user{
+    border: 2px solid #fff;
+    border-radius: 100px;
+}
+
+/* main content */
+main{
+
+    box-sizing: border-box;
+    
+}
+
+small{
+    font-weight: 500;
+    font-size: 14px;
+    color: rgb(124, 124, 124);
+}
+
+#pemisah_tanggal{
+    margin-right: 7px;
+    margin-left: 7px;
+    height: 4px !important;
+    width: 4px !important;
+    border-radius: 100px;
+    background: rgb(124, 124, 124);
+}
+
+.share{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+    margin-bottom: 0;
+    
+}
+
+.share a{
+    text-align: center;
+    width: 100%;
+    padding: 20px 0;
+    font-size: 20px;
+}
+
+.sosmed{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: #fff;
+    width: 38px;
+    left: 0;
+    border-radius: 100px;
+    font-size: 18px;
+    margin-left: 20px;
+    height: 38px;
+    margin-top: 10px;
+}
+
+
+.facebook{
+    background: #3b5998;
+} 
+
+.whatsapp{
+    background: #0dc143;
+    margin-left: 10px;
+}
+
+/* line */
+.line-container{
+    height: 7px;
+    width: 100%;
+}
+
+.line1{
+    width: 20%;
+    height: 100%;
+    background: #274C77;
+}
+
+.line2{
+    width: 30%;
+    height: 100%;
+    background: #5193e0;
+}
+
+.line3{
+    width: 50%;
+    height: 100%;
+    background: #c1ddfd;
+}
+
+/* main komentar */
+.main-komentar .user{
+    font-weight: 500;
+    color: #5193e0;
+}
+
+.title_berita{
+    background: #ebebeb;
+}
+
+
+@media screen and ( max-width:768px){
+      nav{
+        padding: 10px 0;
+    }
+
+    .title_berita{
+        
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .title_berita h4{
+        font-size: 19px;
+    }
+
+    #container_berita  {
+        padding: 0 20px !important;
+    }
+
+    #logo{
+        width: 140px !important;
+    }
+
+
+    .nav-left{
+      justify-content:flex-end !important;
+    }
+
+    .nav-text-large{
+        font-size: 17px !important;
+    }
+
+    .nav-text-small{
+        font-size: 9px !important;
+    }
+
+
+    .nama-atas{
+        display: none;
+    }
+
+    .logo{
+        width: 43px !important;
+    }
+
+    #user{
+        width: 43px !important;
+    }
+
+    /* content */
+    .side-content{
+        margin-left: 0 !important;
+        margin-top: 100px;
+    }
+
+    .share{
+        margin-bottom: 20px;
+    }
+
+    .share a{
+        width: fit-content;
+        padding: 8px 15px;
+        font-size: 16px;
+        margin-left: 20px;
+        border-radius: 4px;
+    }
+
+         
+   
+
+
+}

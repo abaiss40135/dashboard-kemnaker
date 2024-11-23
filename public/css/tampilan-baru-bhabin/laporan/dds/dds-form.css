@@ -1,0 +1,120 @@
+body {
+    background: rgb(208, 229, 242);
+}
+
+form {
+    padding: 20px 35px;
+    background: #fff;
+}
+
+button {
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: 0;
+    margin-left: 10px;
+    font-weight: bold;
+
+}
+
+button:focus{
+    outline: none;
+    border: none;
+}
+
+
+/* label */
+hr {
+    background: #1E4588;
+}
+
+label,
+h6 {
+    color: #1E4588;
+    font-weight: 500;
+}
+
+::placeholder {
+    color: #86A1CE !important;
+}
+
+/* card */
+.card {
+    border: none !important;
+}
+
+.card-header {
+    margin-top: 4px;
+    background: none !important;
+    border-right: 1.6px solid #1E4588;
+    border-left: 1.6px solid #1E4588;
+    border-top: 1.6px solid #1E4588;
+}
+
+.card .card-body textarea {
+    margin-top: -3px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+    border: none !important;
+    border-bottom: 1px solid #1E4588 !important;
+    border-radius: 0 !important;
+    padding-left: 0;
+}
+
+input[readonly],
+select[readonly] {
+    padding-left: 1em;
+}
+
+input:focus,
+select:focus {
+    border-bottom: 1.6px solid #1E4588 !important;
+}
+
+textarea {
+    border: 1.6px solid #1E4588 !important;
+}
+
+/* disable ring */
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+[type=text].form-control:focus,
+[type=password].form-control:focus,
+[type=email].form-control:focus,
+[type=tel].form-control:focus,
+[contenteditable].form-control:focus {
+    box-shadow: inset 0 -1px 0 #ddd;
+}
+
+
+@media screen and (max-width:768px) {
+    form {
+        padding: 20px;
+    }
+
+    /* button */
+    button {
+        width: 47%;
+    }
+
+    .btn {
+        width: 47%;
+    }
+    button:nth-child(1) {
+        margin-left: 0 !important;
+    }
+}
+
+span textarea {
+    border: none !important;
+}

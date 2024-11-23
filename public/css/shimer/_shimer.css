@@ -1,0 +1,57 @@
+.shine {
+    background: #f6f7f8;
+    background-image: linear-gradient(90deg, #f6f7f8, #edeef1 20%, #f6f7f8 40%, #f6f7f8);
+    background-repeat: no-repeat;
+    background-size: 800px 160px;
+    display: inline-block;
+    position: relative;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: placeholderShimmer;
+    -webkit-animation-timing-function: linear
+}
+
+div .img {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.box {
+    width: 128px
+}
+
+.box,
+.box-btn {
+    height: 128px;
+    margin: .5rem
+}
+
+.box-btn {
+    width: 35px
+}
+
+.lines {
+    height: 1rem;
+    width: auto;
+    margin: 1rem 0
+}
+
+.lines-title {
+    height: 3rem;
+    width: auto;
+    margin: 1rem 0
+}
+
+@-webkit-keyframes placeholderShimmer {
+    0% {
+        background-position: -468px 0
+    }
+    to {
+        background-position: 468px 0
+    }
+}
+
+.width-full {
+    width: 100%
+}

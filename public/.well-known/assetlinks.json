@@ -1,0 +1,26 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "id.go.polri.bos.twa",
+      "sha256_cert_fingerprints": [
+        "B1:8B:8E:9E:A9:48:12:D5:EC:0E:66:BA:60:F1:26:CF:01:F1:AA:5A:16:0D:BF:3D:09:C6:87:47:B8:E8:1E:D1"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "id.go.polri.bos",
+      "sha256_cert_fingerprints": [
+        "D7:19:81:AE:4C:84:06:23:E3:F7:67:E8:A2:B2:CC:FB:EF:71:34:3C:89:CD:E4:B3:EF:44:E2:73:B5:73:75:55"
+      ]
+    }
+  }
+]

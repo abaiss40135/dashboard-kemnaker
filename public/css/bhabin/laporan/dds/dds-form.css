@@ -1,0 +1,120 @@
+body {
+    background: rgb(208, 229, 242);
+}
+
+main form {
+    padding: 20px 35px;
+    background: #fff;
+}
+
+main button {
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: 0;
+    margin-left: 10px;
+    font-weight: bold;
+
+}
+
+main button:focus{
+    outline: none;
+    border: none;
+}
+
+
+/* label */
+main hr {
+    background: #1E4588;
+}
+
+main label,
+main h6 {
+    color: #1E4588;
+    font-weight: 500;
+}
+
+main ::placeholder {
+    color: #86A1CE !important;
+}
+
+/* card */
+main .card {
+    border: none !important;
+}
+
+main .card-header {
+    margin-top: 4px;
+    background: none !important;
+    border-right: 1.6px solid #1E4588;
+    border-left: 1.6px solid #1E4588;
+    border-top: 1.6px solid #1E4588;
+}
+
+main .card .card-body textarea {
+    margin-top: -3px;
+}
+
+main input[type="text"],
+main input[type="tel"],
+main input[type="password"],
+main input[type="email"],
+main textarea,
+main select {
+    border: none !important;
+    border-bottom: 1px solid #1E4588 !important;
+    border-radius: 0 !important;
+    padding-left: 0;
+}
+
+main input[readonly],
+main select[readonly] {
+    padding-left: 1em;
+}
+
+main input:focus,
+select:focus {
+    border-bottom: 1.6px solid #1E4588 !important;
+}
+
+main textarea {
+    border: 1.6px solid #1E4588 !important;
+}
+
+/* disable ring */
+main textarea:focus,
+main textarea.form-control:focus,
+main input.form-control:focus,
+main input[type=text]:focus,
+main input[type=password]:focus,
+main input[type=email]:focus,
+main input[type=number]:focus,
+main [type=text].form-control:focus,
+main [type=password].form-control:focus,
+main [type=email].form-control:focus,
+main [type=tel].form-control:focus,
+main [contenteditable].form-control:focus {
+    box-shadow: inset 0 -1px 0 #ddd;
+}
+
+
+@media screen and (max-width:768px) {
+    main form {
+        padding: 20px;
+    }
+
+    /* button */
+    main button {
+        width: 47%;
+    }
+
+    main .btn {
+        width: 47%;
+    }
+    main button:nth-child(1) {
+        margin-left: 0 !important;
+    }
+}
+
+main span textarea {
+    border: none !important;
+}

@@ -1,0 +1,62 @@
+.sosmed-footer-icon,
+.contact-us-icon-wrapping {
+    cursor: pointer;
+}
+
+.contact-us-icon-wrapping {
+    height: 3em;
+}
+
+.contact-us-footer-text {
+    font-size: 12px;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+@media (min-width: 992px) {
+    .w-lg-30 {
+        width: 30% !important;
+    }
+
+    .w-lg-40 {
+        width: 40% !important;
+    }
+
+    .title-polri {
+        font-size: 20px;
+    }
+
+    .sub-title-polri {
+        font-size: 14px;
+    }
+
+    .contact-us {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 992px) {
+    .w-md-80 {
+        width: 80% !important;
+    }
+
+    .title-polri {
+        font-size: 1.6em;
+    }
+
+    .sub-title-polri {
+        font-size: 1.2em;
+    }
+
+    .section1-footer,
+    .section2-footer,
+    .section3-footer {
+        width: 80%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .sosmed-footer-icon {
+        width: 60px;
+    }
+}

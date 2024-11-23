@@ -1,0 +1,52 @@
+.divider{
+    position: fixed;
+    width: 100%;
+    height: 50%;
+    z-index: -1;
+    top: 70px;
+    left: 0;
+    background: #1E4588;
+}
+
+footer {
+    display: none !important;
+}
+
+/*nav{
+    padding: 20px 10px;
+}*/
+
+.nav-text-small{
+    font-size: 9px !important;
+}
+
+.reset-password-form {
+  width: 400px;
+  height: fit-content;
+  background: white;
+  padding: 10px 12px;
+  padding: 38px 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.reset-password-form button:hover{
+    background: #2a57a5 !important;
+}
+
+@media screen and (max-width:768px){
+    form{
+        width: 92%;
+    }
+}
+
+.search-bar {
+    display: none !important;
+}
+
+@media (min-width: 992px) {
+    .brand {
+        margin-left: -450px;
+    }
+}

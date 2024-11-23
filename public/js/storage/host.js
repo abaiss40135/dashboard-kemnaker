@@ -1,0 +1,1 @@
+const host = 'https://bos.polri.go.id/bos-content/'

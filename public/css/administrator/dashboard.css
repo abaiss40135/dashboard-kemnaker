@@ -1,0 +1,42 @@
+:root {
+    --blue: hsl(212, 51%, 28%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.title > p {
+    margin-bottom: 0.8rem;
+}
+
+.card {
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.header {
+    background-color: var(--blue);
+    color: white;
+    padding-inline: 0.9rem;
+    padding-block: 0.475rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.18em;
+}
+
+.header > * {
+    color: white;
+}
+
+.btn-blue {
+    background-color: var(--blue);
+    color: white;
+}

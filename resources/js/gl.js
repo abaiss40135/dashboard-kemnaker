@@ -1,0 +1,1 @@
+window.gl = require('mapbox-gl');

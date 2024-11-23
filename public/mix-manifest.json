@@ -1,0 +1,18 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/gl.css": "/css/gl.css",
+    "/js/gl.js": "/js/gl.js",
+    "/vendor/datatables.net": "/vendor/datatables.net",
+    "/vendor/datatables.net-autofill": "/vendor/datatables.net-autofill",
+    "/vendor/datatables.net-autofill-bs4": "/vendor/datatables.net-autofill-bs4",
+    "/vendor/datatables.net-bs4": "/vendor/datatables.net-bs4",
+    "/vendor/datatables.net-buttons": "/vendor/datatables.net-buttons",
+    "/vendor/datatables.net-buttons-bs4": "/vendor/datatables.net-buttons-bs4",
+    "/vendor/datatables.net-responsive": "/vendor/datatables.net-responsive",
+    "/vendor/datatables.net-responsive-bs4": "/vendor/datatables.net-responsive-bs4",
+    "/vendor/datatables.net-select": "/vendor/datatables.net-select",
+    "/vendor/datatables.net-select-bs4": "/vendor/datatables.net-select-bs4",
+    "/vendor/chartjs/chart.js": "/vendor/chartjs/chart.js",
+    "/vendor/chartjs/chart.min.js": "/vendor/chartjs/chart.min.js"
+}
