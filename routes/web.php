@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Middleware\MarkAsReadNotificationMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +25,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register' => false]);
 Route::impersonate();
+Route::get('/', fn() => redirect(route('login')));
 Route::get('/administrator', 'Admin\DashboardController@index')->name('administrator');
 Route::get('captcha', 'CaptchaController@getCaptcha')->name('captcha');
+
+
+Route::get('/select2', function() {
+    return [
+        'halo'
+    ];
+})->name('user.select2');

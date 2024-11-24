@@ -2,6 +2,8 @@
 /public/hot
 /public/storage
 /public/js/*.js
+/public/vendor
+/storage/logs
 /public/css/*.css
 /public/js/*.LICENSE.txt
 /storage/*.key

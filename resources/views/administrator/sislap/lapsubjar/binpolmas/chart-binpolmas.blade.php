@@ -9,35 +9,10 @@
         </div>
     </div>
     <div class="card-body py-4">
-        <h5 class="text-center font-weight-bold chart-title"></h5>
+        <h5 class="text-center font-weight-bold chart-title">Realisasi Anggaran Per Jenis Belanja</h5>
         <div class="d-flex justify-content-between">
             <button disabled id="reset-chart-btn" class="mt-2 mb-4 btn btn-warning d-none">Kembali ke Tampilan Awal</button>
-{{--            <form style="width: 47%;" id="export-form" action="#"--}}
-{{--                   class="form" id="formFilterLaporanBhabinkamtibmas"--}}
-{{--                   method="POST" target="_blank">--}}
-{{--                @csrf--}}
-
-{{--                <input type="hidden" name="start_date">--}}
-{{--                <input type="hidden" name="end_date">--}}
-{{--                <div class="d-flex justify-content-between align-items-center gap-3 gap-x-3 mt-3">--}}
-{{--                    <div class="form-group">--}}
-{{--                        <label for="tanggal">Tanggal:</label>--}}
-{{--                        <input type="text" id="tanggal" class="form-control" required>--}}
-{{--                    </div>--}}
-{{--                    --}}{{--                    list polda --}}
-{{--                    <div class="form-group" style="width: 200px;">--}}
-{{--                        <label for="polda">Polda:</label>--}}
-{{--                        <select name="satuan" id="satuan" class="form-control select2" required>--}}
-{{--                            <option selected>Mabes Polri</option>--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
-{{--                    <div class="form-group text-center">--}}
-{{--                        <button type="submit" class="btn btn-primary">Download Excel</button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </form>--}}
         </div>
-{{--        <button id="export-chart-btn" class="mt-2 mb-4 ml-3 btn btn-primary d-none" data-toggle="modal" data-target="#modalExportRekapLaporanBinpolmas">Export Data Laporan Binpolmas</button>--}}
 
         <canvas id="chart-rekap-binpolmas" style="max-height: 450px"></canvas>
         <canvas id="chart-prov-2" class="d-none" style="max-height: 450px"></canvas>
@@ -152,7 +127,7 @@
         }
 
         const barChartRekapBinpolmas = chartRekapBinpolmas.getContext('2d')
-        const initChartRekapBinpolmas = (data, labels, label, dataPetugasPolmas = null, chartColors = null) => {
+        const initChartRekapBinpolmas = (data, labels, label, dataPetugasPolmas = null, chartColors = null, useLabel = true) => {
             const colors = chartColors ?? generateRandomColor(labels.length)
 
             const twinColors = {
@@ -188,7 +163,8 @@
                         borderWidth: 1,
                     }
                 ]
-            } else if(binpolmasType === 'pembina_polmas' && label.includes('Per Polda')) {
+            }
+            else if(binpolmasType === 'pembina_polmas' && label.includes('Per Polda')) {
                 let chart1 = {}
                 let chart2 = {}
 
@@ -217,7 +193,8 @@
                         borderWidth: 1,
                     }
                 ]
-            } else if(dataPetugasPolmas === null) { // this is default dataset, and running when dataPetugasPolmas is null
+            }
+            else if(dataPetugasPolmas === null) { // this is default dataset, and running when dataPetugasPolmas is null
                 dataset = [{
                     label: label,
                     data: data,
@@ -225,7 +202,8 @@
                     borderColor: colors.borderColors,
                     borderWidth: 1,
                 }]
-            } else { // special case when dataPetugasPolmas is true and only run when binpolmasType is petugas polmas wilayah
+            }
+            else { // special case when dataPetugasPolmas is true and only run when binpolmasType is petugas polmas wilayah
                 dataset = [
                     {
                         label: 'Jumlah RW Polmas Wilayah',
@@ -246,15 +224,15 @@
                 ]
             }
 
+            const plugins = useLabel ? [
+                ChartDataLabels,
+                'datalabels'
+            ] : ['datalabels'];
             const chart = new Chart(barChartRekapBinpolmas, {
                 type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: dataset,
-                },
-                plugins: [
-                    ChartDataLabels,
-                ],
+                data: data,
+                format: 'idr',
+                plugins: plugins,
                 options: {
                     layout: {
                         padding: 40,
@@ -293,13 +271,7 @@
                             font: {
                                 weight: 'bold', // Ketebalan teks labelm
                             },
-                            formatter: function(value, context) {
-                                if(value === undefined) {
-                                    const indexItem = context.dataIndex
-                                    return Object.values(context.dataset.data)[indexItem]
-                                }
-                                return value; // Menggunakan nilai data sebagai label
-                            },
+                            formatter: (value, context) => value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&.'),
                             listeners: {
                                 click: function(context, event) {
                                     // Receives `click` events only for labels of the first dataset.
@@ -307,6 +279,8 @@
 
                                     const index = context.dataIndex
                                     const type = context.dataset.label
+
+                                    console.log(context.dataset.data)
 
                                     // ketika data chart adalah nol, maka tidak terjadi action apapun
                                     if(context.dataset.data[index] === 0) return
@@ -378,39 +352,20 @@
                     const index = slice[0].index
                     const type = slice[0].element.$context.dataset.label
 
-                    if(binpolmasType === undefined || (binpolmasType !== indexBinpolmas[index] && type === 'Rekapitulasi Data Laporan Subdit Binpolmas')) {
-                        binpolmasType = indexBinpolmas[index]
-                    }
-
-                    if(type.includes('Rekapitulasi Data Laporan Subdit Binpolmas'))
-                    {
-                        @if(empty(auth()->user()) || auth()->user()->haveRoleID(\App\Models\User::BAGOPSNALEV_MABES) || auth()->user()->haveRoleID(\App\Models\User::ADMIN))
-                            resetChartbtn.removeAttribute('disabled')
-                            chart.destroy()
-
-                            initChartPolda(binpolmasType);
-                        @elseif(auth()->user() && auth()->user()->haveRoleID(\App\Models\User::BINPOLMAS_POLDA))
-                            resetChartbtn.removeAttribute('disabled')
-                            chart.destroy()
-
-                            initChartPolres(binpolmasType, '{{auth()->user()->personel->polda}}', index);
-                        @else
-                            // jika user adalah operator bagopsnavel polres, maka akan langsung diarahkan ke sub menu, namun jika mengklik bar yang memiliki sub menu
-                            {{--if(['data_fkpm', 'petugas_polmas', 'supervisor_polmas', 'pembina_polmas', 'kegiatan_petugas_polmas'].find((item) => item === binpolmasType)) {--}}
-                            {{--    resetChartbtn.removeAttribute('disabled')--}}
-                            {{--    chart.destroy()--}}
-
-                            {{--    initChartSubData(binpolmasType, '{{auth()->user()->personel->polres}}');--}}
-                            {{--}--}}
-                        @endif
-                    }
-                    else if((type.toLowerCase().includes('polda') && binpolmasType !== 'pembina_polmas') || (type.toLowerCase().includes('total') && binpolmasType === 'pembina_polmas'))
+                    console.log(index, type)
+                    if(index === 1 && (type === 'Pagu' || type === 'Realisasi')) // index 1 => chart pertama kali, belanja barang
                     {
                         resetChartbtn.removeAttribute('disabled')
                         chart.destroy()
 
-                        const polda = Object.keys(slice[0].element.$context.dataset.data)[index]
-                        initChartPolres(binpolmasType, polda, index);
+                        initChartPolda(binpolmasType);
+                    }
+                    else if(index === 3 && (type === 'Barang Pagu' || type === 'Barang Real')) // index 2 => chart sub pertama, ditjen PHI
+                    {
+                        resetChartbtn.removeAttribute('disabled')
+                        chart.destroy()
+
+                        initChartPolres(binpolmasType);
                     }
                     // else if(
                     //     type === 'Rekapitulasi Data Binpolmas Per Polres' &&
@@ -435,95 +390,35 @@
             resetChartbtn.classList.add('d-none')
             exportForm.classList.add('d-none')
 
-            const chartColors = {
-                backgroundColors: [
-                    "hsla(12, 65%, 30%, 0.7)",  // Warna gelap acak 2
-                    "hsla(292, 65%, 25%, 0.7)", // Warna gelap acak 3
-                    "hsla(180, 45%, 30%, 0.7)", // Warna gelap acak 4
-                    "hsla(340, 60%, 20%, 0.7)", // Warna gelap acak 5
-                    "hsla(260, 45%, 25%, 0.7)", // Warna gelap acak 6
-                    "hsla(220, 60%, 30%, 0.7)", // Warna gelap acak 7 (6a)
-                    "hsla(200, 55%, 30%, 0.7)", // Warna gelap acak 8 (6b)
-                    "hsla(150, 45%, 25%, 0.7)", // Warna gelap acak 9
-                    "hsla(100, 50%, 20%, 0.7)", // Warna gelap acak 10
-                    "hsla(60, 65%, 30%, 0.7)",  // Warna gelap acak 11
-                    "hsla(30, 70%, 28%, 0.7)",  // Warna gelap acak 12 (9a)
-                    "hsla(15, 65%, 26%, 0.7)",  // Warna gelap acak 13 (9b)
-                    "hsla(5, 60%, 24%, 0.7)",   // Warna gelap acak 14 (9c)
-                    "hsla(350, 55%, 22%, 0.7)"  // Warna gelap acak 15 (9d)
+            const chartData = {
+                labels: [
+                    "Belanja Modal",
+                    "Belanja Barang",
+                    "Belanja Pegawai",
+                    "Total"
                 ],
-                borderColors: [
-                    "hsl(46, 70%, 25%)",
-                    "hsl(12, 65%, 30%)",
-                    "hsl(292, 65%, 25%)",
-                    "hsl(180, 45%, 30%)",
-                    "hsl(340, 60%, 20%)",
-                    "hsl(260, 45%, 25%)",
-                    "hsl(220, 60%, 30%)",
-                    "hsl(200, 55%, 28%)",
-                    "hsl(150, 45%, 25%)",
-                    "hsl(100, 50%, 20%)",
-                    "hsl(60, 65%, 30%)",
-                    "hsl(30, 70%, 28%)",
-                    "hsl(15, 65%, 26%)",
-                    "hsl(5, 60%, 24%)",
-                    "hsl(350, 55%, 22%)"
+                datasets: [
+                    {
+                        label: 'Pagu',
+                        data: [561127207000, 5008447739000, 542227019000, 6111801965000],
+                        backgroundColor: '#2D75B6',
+                    },
+                    {
+                        label: 'Realisasi',
+                        data: [305458697388, 3597292773088, 422660951037, 4325412421513],
+                        backgroundColor: '#F9AE39',
+                    }
                 ]
             };
 
-            const result = {
-                "data": [
-                    {
-                        "1._data_fkpm_kawasan": Math.floor(Math.random() * 5000),
-                        "2._data_fkpm_wilayah": Math.floor(Math.random() * 5000),
-                        "3._data_pranata": Math.floor(Math.random() * 5000),
-                        "4._data_orsosmas": Math.floor(Math.random() * 5000),
-                        "5._data_komunitas_masyarakat": Math.floor(Math.random() * 5000),
-                        "6._petugas_polmas_kawasan": Math.floor(Math.random() * 5000),
-                        "7._supervisor_polmas": Math.floor(Math.random() * 5000),
-                        "8._pembina_polmas": Math.floor(Math.random() * 5000),
-                        "9A._kegiatan_petugas_polmas_sambang": Math.floor(Math.random() * 5000),
-                        "9B._kegiatan_petugas_polmas_pemecahan_masalah_sosial": Math.floor(Math.random() * 5000),
-                        "9C._kegiatan_petugas_polmas_laporan_informasi": Math.floor(Math.random() * 5000),
-                        "9D._kegiatan_petugas_polmas_penaganan_perkara_ringan": Math.floor(Math.random() * 5000)
-                    },
-                    [
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null
-                    ]
-                ]
-            }
+
             preLoader.classList.add('d-none')
             resetChartbtn.classList.remove('d-none')
             exportForm.classList.remove('d-none')
             resetChartbtn.setAttribute('disabled', 'true')
 
-            const data = result.data[0]
-            let labels = []
-            let values = []
-
-            // process labels with foreach, for labels chart
-            Object.keys(data).forEach(item => {
-                labels.push(item.split('_').map(w => w === 'fkpm' ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1)).join(' '))
-            })
-
-            // wrapping values
-            Object.values(data).forEach(value => {
-                values.push(value)
-            })
-
             resetChartbtn.setAttribute('disabled', false)
-            initChartRekapBinpolmas(values, labels, 'Rekapitulasi Data Laporan Subdit Binpolmas', result.data[1], chartColors)
+            initChartRekapBinpolmas(chartData, chartData.labels, 'Realisasi Anggaran Per Jenis Belanja')
         }
 
         const chartPoldaBgColors = [
@@ -573,48 +468,37 @@
             borderColors: chartPoldaBgColors.map(index => index.replace(', 0.7)', ')'))
         };
 
-        const initChartPolda = binpolmasType => {
+        const initChartPolda = () => {
             preLoader.classList.remove('d-none')
             resetChartbtn.classList.add('d-none')
             exportForm.classList.add('d-none')
 
-            const result = {
-                "data": {
-                    "JATIM": 1094
-                }
-            }
+            const chartData = {
+                labels: ['SETJEN', 'ITJEN', 'DITJEN BINAPENTA & PKK', 'DITJEN PHI & JAMSOS TK', 'DITJEN BINWASNAKER', 'BARENBANG', 'DITJEN BINAVALOTAS'],
+                datasets: [
+                    {
+                        label: 'Barang Pagu',
+                        data: [452076287000, 68470374000, 843107967000, 1546283680000, 359380068000, 221424430000, 2621059159000], // Pagu
+                        backgroundColor: '#2D75B6',
+                    },
+                    {
+                        label: 'Barang Real',
+                        data: [348551526059, 51924409288, 664942247838, 1208166698059, 264800558854, 146989288930, 1647912198626], // Real
+                        backgroundColor: '#F9AE39',
+                    }
+                ]
+            };
 
             preLoader.classList.add('d-none')
             resetChartbtn.classList.remove('d-none')
             exportForm.classList.remove('d-none')
 
-            const data = Array.isArray(result.data) ? result.data[0] : result.data
-            let labels = []
-            let values = []
+            $('.chart-title').html('Perbandingan Pagu dan Realisasi Barang Per Eselon 1')
 
-            // process labels with foreach, for labels chart
-            Object.keys(data).forEach(item => {
-                labels.push(item.split('_').map(w => w.toUpperCase()).join(' '))
-            })
-
-            // wrapping values
-            Object.values(data).forEach(value => {
-                values.push(value)
-            })
-
-            const binpolmasTypePrint = binpolmasType.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
-            $('.chart-title').html('Rekapitulasi ' + (binpolmasTypePrint.startsWith('Data') ? '' : 'Data') + binpolmasTypePrint + ' – Per Polda')
-
-            if(Array.isArray(result.data)) {
-                initChartRekapBinpolmas(data, labels, 'Rekapitulasi Data Binpolmas Per Polda', result.data[1], chartPoldaColors)
-            } else {
-                initChartRekapBinpolmas(data, labels, 'Rekapitulasi Data Binpolmas Per Polda', null, chartPoldaColors)
-            }
+            initChartRekapBinpolmas(chartData, chartData.labels, 'Perbandingan Pagu dan Realisasi Barang Per Eselon 1')
         }
 
         const initChartPolres = (binpolmasType, polda, indexChartPolda) => {
-            // polda = polda.split('(')[0].trim()
-
             preLoader.classList.remove('d-none')
             resetChartbtn.classList.add('d-none')
             exportForm.classList.add('d-none')
@@ -624,37 +508,29 @@
                 borderColors: [chartPoldaColors.borderColors[indexChartPolda]],
             }
 
-            const result = {
-                "data": {
-                    "POLRESTA SIDOARJO": 1094
-                }
-            }
+            const chartData = {
+                labels: ['DKI Jakarta', 'Jawa Barat', 'Jawa Tengah', 'Yogyakarta', 'Jawa Timur', 'NAD', 'Sumatera Utara', 'Sumatera Barat', 'Riau', 'Jambi', 'Sumatera Selatan', 'Lampung', 'Kalimantan Barat', 'Kalimantan Tengah', 'Kalimantan Selatan', 'Kalimantan Timur', 'Sulawesi Utara', 'Sulawesi Tengah', 'Sulawesi Selatan', 'Sulawesi Tenggara', 'Maluku', 'Bali', 'NTB', 'NTT', 'Papua', 'Bengkulu', 'Maluku Utara', 'Banten', 'Bangka Belitung', 'Gorontalo', 'Kepulauan Riau', 'Papua Barat', 'Sulawesi Barat', 'Kalimantan Utara'],
+                datasets: [
+                    {
+                        label: 'Pagu',
+                        data: [1138173000, 755290000, 413124000, 680297000, 438385000, 444387000, 386790000, 1046086000, 329968000, 392958000, 346814000, 383913000, 332957000, 336278000, 327065000, 1182294000, 1283375000, 459827000, 1234974000, 454962000, 375207000, 1082335000, 385542000, 520285000, 513383000, 299981000, 355684000, 1030898000, 364516000, 309460000, 304678000, 526420000, 434031000, 310364000],
+                        backgroundColor: '#2D75B6',
+                    },
+                    {
+                        label: 'Realisasi',
+                        data: [486495104, 597837460, 289181471, 547900847, 244034807, 316217325, 15648810, 835883020, 229637344, 248712240, 196890423, 237656069, 143156300, 229985201, 140116038, 259366300, 835929000, 313289000, 1017207931, 338221900, 237472320, 665370404, 243152805, 357348482, 335436000, 215818100, 134754000, 605581880, 198640765, 222352000, 156417434, 289775870, 192355645, 165732200],
+                        backgroundColor: '#F9AE39',
+                    }
+                ]
+            };
+
 
             preLoader.classList.add('d-none')
             resetChartbtn.classList.remove('d-none')
             exportForm.classList.remove('d-none')
 
-            const data = Array.isArray(result.data) ? result.data[0] : result.data
-            let labels = []
-            let values = []
-
-            // process labels with foreach, for labels chart
-            Object.keys(data).forEach(item => {
-                labels.push(item.split('_').map(w => w.toUpperCase()).join(' '))
-            })
-
-            // wrapping values
-            Object.values(data).forEach(value => {
-                values.push(value)
-            })
-
-            $('.chart-title').html('Rekapitulasi Data ' + binpolmasType.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') + ' – ' + polda)
-            // initChartRekapBinpolmas(data, labels, 'Rekapitulasi ' + binpolmasType.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') + ' ' + polda)
-            if(Array.isArray(result.data)) {
-                initChartRekapBinpolmas(values, labels, 'Rekapitulasi Data Binpolmas Per Polres', result.data[1], chartPolresColors)
-            } else {
-                initChartRekapBinpolmas(values, labels, 'Rekapitulasi Data Binpolmas Per Polres', null, chartPolresColors)
-            }
+            $('.chart-title').html('Perbandingan Pagu dan Realisasi Per Disnakertrans Provinsi')
+            initChartRekapBinpolmas(chartData, chartData.labels, 'Perbandingan Pagu dan Realisasi Per Disnakertrans Provinsi', null, null, false)
         }
 
         const initChartSubData = (binpolmasType, polres) => {
