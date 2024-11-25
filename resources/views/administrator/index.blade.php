@@ -122,7 +122,7 @@
 
     <div class="mt-5"></div>
 
-    <h4 class="h4">Tabel 1</h4>
+    <h4 class="h4">Realisasi Anggaran Kemnaker</h4>
     <table class="table table-hover table-bordered text-center w-100" id="table-pemanfaatan">
         <thead>
         <tr style="background-color: #1E4588">
@@ -281,7 +281,7 @@
 
     <hr>
     <div class="d-flex justify-content-between">
-        <h4 class="h4 mt-3">Tabel 2</h4>
+        <h4 class="h4 mt-3">Capaian Indikator Pelaksanaan Anggaran Kemnaker</h4>
         <button onclick="resetTable2()" id="reset-table-2-btn" class="mt-2 mb-4 btn btn-warning d-none">Kembali ke Tampilan Awal</button>
     </div>
     <table class="table table-hover table-bordered text-center w-100" id="table-2-parent">
@@ -618,7 +618,7 @@
     </table>
 
     <hr>
-    <h4 class="h4 mt-3">Tabel 3</h4>
+    <h4 class="h4 mt-3">Data Realisasi Pengadaan Barang/Jasa Mekanisme Tender/Seleksi Pada Aplikasi LPSE 2024</h4>
     <table class="table table-hover table-bordered text-center w-100" id="table-pemanfaatan">
         <thead>
         <tr style="background-color: #1E4588">

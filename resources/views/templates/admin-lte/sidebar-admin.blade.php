@@ -38,14 +38,14 @@
                             <a href=""
                                class="nav-link">
                                 <i class="far fa-{{ request()->is('*perluasan-bujp*') ? 'dot-circle' : 'circle' }} nav-icon"></i>
-                                <p>D. Program Unggulan</p>
+                                <p>Dashboard Prog. Unggulan</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href=""
                                class="nav-link {{ request()->is('*perpanjangan*') ? 'active' : '' }}">
                                 <i class="far fa-{{ request()->is('*perpanjangan*') ? 'dot-circle' : 'circle' }} nav-icon"></i>
-                                <p>D. Data Ketenagakerjaan</p>
+                                <p>Dashboard Data Naker</p>
                             </a>
                         </li>
                     </ul>
