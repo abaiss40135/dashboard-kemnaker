@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/admin/plugins/daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/pace/themes/blue/pace-theme-flash.css') }}">
 
-    <link rel="icon" href="{{ asset('img/logo_kemnaker_saja_putih.png')}}">
+    <link rel="icon" href="{{ asset('img/logo_kemnaker_saja_biru.png')}}?v=2">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="{{ asset('vendor/admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 

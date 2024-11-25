@@ -169,7 +169,7 @@
                 class="w-100 d-flex justify-content-center"
                 style="column-gap: 0.6rem">
                 <a
-                    href="{{ route('password.request') }}"
+                    href=""
                     class="fw-bold">Lupa Password?</a>
             </div>
             @endif
