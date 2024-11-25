@@ -17,7 +17,7 @@
     <!-- Bootstrap CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"
           crossorigin="anonymous">
-    <link rel="icon" href="{{asset('img/bhabin/binmas.svg')}}" sizes="144x144" type="image/svg">
+    <link rel="icon" href="{{ asset('img/logo_kemnaker_saja_putih.png')}}?v=2">
 
     <link rel="stylesheet" href="{{ asset('css/pace/pace-white-flash.css') }}">
 
