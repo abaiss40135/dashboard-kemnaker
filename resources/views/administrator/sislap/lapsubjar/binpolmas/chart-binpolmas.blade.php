@@ -1,83 +1,30 @@
-<div class="card">
-    <div class="card-header bg-primary">
-        Chart Dashboard Rekapitulasi Data Kementerian Ketenagakerjaan
-        <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                    onclick="angleIcon(this)">
-                <i class="fas fa-angle-down" style="font-size: 1.4em"></i>
+<div class="box rounded-2xl">
+    <div class="box-header flex b-0 justify-start items-center">
+        <h2 class="mt-0">Chart Dashboard Rekapitulasi Data Kementerian Ketenagakerjaan</h2>
+    </div>
+    <div class="box-body pt-0 summery-box">
+        <h5 class="text-center font-bold text-lg chart-title">Realisasi Anggaran Per Jenis Belanja</h5>
+
+        <div class="flex justify-between">
+            <button disabled id="reset-chart-btn" class="mt-2 mb-4 btn btn-warning hidden bg-yellow-500 text-white py-2 px-4 rounded">
+                Kembali ke Tampilan Awal
             </button>
         </div>
-    </div>
-    <div class="card-body py-4">
-        <h5 class="text-center font-weight-bold chart-title">Realisasi Anggaran Per Jenis Belanja</h5>
-        <div class="d-flex justify-content-between">
-            <button disabled id="reset-chart-btn" class="mt-2 mb-4 btn btn-warning d-none">Kembali ke Tampilan Awal</button>
-        </div>
 
-        <canvas id="chart-rekap-binpolmas" style="max-height: 450px"></canvas>
-        <canvas id="chart-prov-2" class="d-none" style="max-height: 450px"></canvas>
+        <canvas id="chart-rekap-binpolmas" class="max-h-[450px]"></canvas>
+        <canvas id="chart-prov-2" class="hidden max-h-[450px]"></canvas>
+
         <div class="text-center preloader" id="binpolmas-chart-preloader">
-            <img class="img-fluid" alt="img-preloader" src="{{asset('img/ellipsis-preloader.gif')}}">
+            <img class="mx-auto max-w-full" alt="img-preloader" src="{{asset('img/ellipsis-preloader.gif')}}">
         </div>
     </div>
 </div>
-
-<div id="modalExportRekapLaporanBinpolmas" class="modal fade" tabindex="-1"
-     role="dialog" data-backdrop="static"
-     aria-labelledby="modalExportRekapLaporanBinpolmasLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <h5 class="modal-title text-center" id="modalExportRekapLaporanBinpolmasLabel">Pilih Periode</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="export-form" action="#"
-                      class="form" id="formFilterLaporanBhabinkamtibmas"
-                      method="POST" target="_blank">
-                    @csrf
-
-                    <input type="hidden" name="start_date">
-                    <input type="hidden" name="end_date">
-                    <div class="form-group">
-                        <label for="tanggal">Tanggal:</label>
-                        <input type="text" id="tanggal" class="form-control">
-                    </div>
-{{--                    list polda --}}
-                    <div class="form-group">
-                        <label for="polda">Polda:</label>
-                        <select name="satuan" id="satuan" class="form-control select2">
-                            <option selected>Mabes Polri</option>
-                        </select>
-                    </div>
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary">Ekspor</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 @push('scripts')
-    @include('assets.js.datetimepicker')
-    @include('assets.js.select2')
-
     <script>
         const chartRekapBinpolmas = document.querySelector('#chart-rekap-binpolmas')
         const resetChartbtn = document.querySelector('#reset-chart-btn')
         const preLoader = document.querySelector('#binpolmas-chart-preloader')
-        const exportForm = document.querySelector('#export-form');
-
-        $('#tanggal').daterangepicker(datetimeSetup, function (start, end) {
-            const exportForm = $('#export-form');
-
-            exportForm.find('input[name="start_date"]').val(start.format('YYYY-MM-DD'));
-            exportForm.find('input[name="end_date"]').val(end.format('YYYY-MM-DD'));
-        });
 
         let binpolmasType;
 
@@ -301,14 +248,6 @@
                                         chart.destroy()
 
                                         initChartPolres(binpolmasType, '{{auth()->user()->personel->polda}}', index);
-                                        @else
-                                        // jika user adalah operator bagopsnavel polres, maka akan langsung diarahkan ke sub menu, namun jika mengklik bar yang memiliki sub menu
-                                        {{--if(['data_fkpm', 'petugas_polmas', 'supervisor_polmas', 'pembina_polmas', 'kegiatan_petugas_polmas'].find((item) => item === binpolmasType)) {--}}
-                                        {{--    resetChartbtn.removeAttribute('disabled')--}}
-                                        {{--    chart.destroy()--}}
-
-                                        {{--    initChartSubData(binpolmasType, '{{auth()->user()->personel->polres}}');--}}
-                                        {{--}--}}
                                         @endif
                                     }
                                     else if(type.toLowerCase().includes('polda'))
@@ -321,10 +260,6 @@
                                     }
                                 },
                                 enter: function(context, event) {
-                                    // Receives `enter` events for any labels of any dataset. Indices of the
-                                    // clicked label are: `context.datasetIndex` and `context.dataIndex`.
-                                    // For example, we can modify keep track of the hovered state and
-                                    // return `true` to update the label and re-render the chart.
                                     context.hovered = true;
                                     return true;
                                 },
@@ -367,17 +302,6 @@
 
                         initChartPolres(binpolmasType);
                     }
-                    // else if(
-                    //     type === 'Rekapitulasi Data Binpolmas Per Polres' &&
-                    //     ['data_fkpm', 'petugas_polmas', 'supervisor_polmas', 'pembina_polmas', 'kegiatan_petugas_polmas'].find((item) => item === binpolmasType)
-                    // )
-                    // {
-                    //     resetChartbtn.removeAttribute('disabled')
-                    //     chart.destroy()
-                    //
-                    //     const polres = Object.keys(slice[0].element.$context.dataset.data)[index]
-                    //     initChartSubData(binpolmasType, polres);
-                    // }
                 }
             }
 
@@ -386,9 +310,8 @@
         }
 
         const initChartFirstTime = () => {
-            preLoader.classList.remove('d-none')
-            resetChartbtn.classList.add('d-none')
-            exportForm.classList.add('d-none')
+            preLoader.classList.remove('hidden')
+            resetChartbtn.classList.add('hidden')
 
             const chartData = {
                 labels: [
@@ -412,9 +335,8 @@
             };
 
 
-            preLoader.classList.add('d-none')
-            resetChartbtn.classList.remove('d-none')
-            exportForm.classList.remove('d-none')
+            preLoader.classList.add('hidden')
+            resetChartbtn.classList.remove('hidden')
             resetChartbtn.setAttribute('disabled', 'true')
 
             resetChartbtn.setAttribute('disabled', false)
@@ -469,9 +391,8 @@
         };
 
         const initChartPolda = () => {
-            preLoader.classList.remove('d-none')
-            resetChartbtn.classList.add('d-none')
-            exportForm.classList.add('d-none')
+            preLoader.classList.remove('hidden')
+            resetChartbtn.classList.add('hidden')
 
             const chartData = {
                 labels: ['SETJEN', 'ITJEN', 'DITJEN BINAPENTA & PKK', 'DITJEN PHI & JAMSOS TK', 'DITJEN BINWASNAKER', 'BARENBANG', 'DITJEN BINAVALOTAS'],
@@ -489,9 +410,8 @@
                 ]
             };
 
-            preLoader.classList.add('d-none')
-            resetChartbtn.classList.remove('d-none')
-            exportForm.classList.remove('d-none')
+            preLoader.classList.add('hidden')
+            resetChartbtn.classList.remove('hidden')
 
             $('.chart-title').html('Perbandingan Pagu dan Realisasi Barang Per Eselon 1')
 
@@ -499,9 +419,8 @@
         }
 
         const initChartPolres = (binpolmasType, polda, indexChartPolda) => {
-            preLoader.classList.remove('d-none')
-            resetChartbtn.classList.add('d-none')
-            exportForm.classList.add('d-none')
+            preLoader.classList.remove('hidden')
+            resetChartbtn.classList.add('hidden')
 
             const chartPolresColors = {
                 backgroundColors: [chartPoldaColors.backgroundColors[indexChartPolda]],
@@ -525,18 +444,16 @@
             };
 
 
-            preLoader.classList.add('d-none')
-            resetChartbtn.classList.remove('d-none')
-            exportForm.classList.remove('d-none')
+            preLoader.classList.add('hidden')
+            resetChartbtn.classList.remove('hidden')
 
             $('.chart-title').html('Perbandingan Pagu dan Realisasi Per Disnakertrans Provinsi')
             initChartRekapBinpolmas(chartData, chartData.labels, 'Perbandingan Pagu dan Realisasi Per Disnakertrans Provinsi', null, null, false)
         }
 
         const initChartSubData = (binpolmasType, polres) => {
-            preLoader.classList.remove('d-none')
-            resetChartbtn.classList.add('d-none')
-            exportForm.classList.add('d-none')
+            preLoader.classList.remove('hidden')
+            resetChartbtn.classList.add('hidden')
 
             axios.get(route('chart-binpolmas.tahap4', {
                 type: binpolmasType,
@@ -544,9 +461,8 @@
             }))
                 .then(res => res.data)
                 .then(result => {
-                    preLoader.classList.add('d-none')
-                    resetChartbtn.classList.remove('d-none')
-                    exportForm.classList.remove('d-none')
+                    preLoader.classList.add('hidden')
+                    resetChartbtn.classList.remove('hidden')
 
                     const data = result.data
                     let labels = []
