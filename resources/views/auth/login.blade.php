@@ -1,225 +1,85 @@
-@extends('templates.core.main')
-@section('customcss')
-    <link rel="stylesheet" href="{{ asset('css/login/index.css') }}">
-    <style>
-        body {
-            background-image: url("{{ asset('img/bg-kemnaker.png') }}") !important;
-            background-size: cover;
-            /*background-position: 350px 130px;*/
-            /*background-repeat: repeat;*/
-            /*background-size: 150px;*/
-            /*background-color: rgba(255,255,255,0.8);*/
-            /*background-blend-mode: lighten;*/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id" content="732390917608-9r9gi63glh7sa2s967v58977kprk01cj.apps.googleusercontent.com">
 
-            /*background-origin: content-box;*/
-        }
+    <title>{{ config('app.long_name') }}</title>
 
-        .username::after {
-            content: '';
-            background-image: url("{{ asset('img/bhabin/icon/login/msg.svg') }}");
-
-        }
-
-        .password::after {
-            content: '';
-            background-image: url("{{ asset('img/bhabin/icon/login/lock.svg') }}");
-        }
-
-
-        @media screen and ( max-width: 412px) {
-            body {
-                background-repeat: no-repeat
-            }
-
-            .logo-image1 {
-                display: none;
-            }
-
-            .logo-image2 {
-                display: block !important;
-            }
-        }
-
-    </style>
-@endsection
-@section('mainComponent')
-<div class="container">
-    <div class="box shadow p-1 border-0" style="overflow: unset">
-        <div class="header d-flex align-items-center justify-content-center">
-            <img
-                src="{{ asset('img/logo-kemnaker.png') }}"
-                class="mr-2 mx-auto logo-image1"
-                width="300px"
-                alt="">
-        </div>
-
-        <div
-            class="form p-4 d-flex flex-column"
-            style="row-gap: 1rem"
-        >
-            @csrf
-            <h1
-                class="text-center fw-bold h5"
-                style="color: #1E4588">FORM LOGIN - DASHBOARD KETENAGAKERJAAN</h1>
-
-            <div class="form-group username w-100 align-items-center">
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    class="@error('email') is-invalid @enderror @error('nrp') is-invalid @enderror"
-                    value="{{ old('email') }}"
-                    placeholder="Username"
-                    autocomplete="off">
-            </div>
-            @error('email')
-            <div
-                class="invalid-feedback mx-auto d-block"
-                style="width: 90%; margin-top: -1rem">
-                <strong>{{ $message }}</strong>
-            </div>
-            @enderror
-            @error('nrp')
-            <div
-                class="invalid-feedback mx-auto d-block"
-                style="width: 90%; margin-top: -1rem">
-                <strong>{{ $message }}</strong>
-            </div>
-            @enderror
-
-            <div class="form-group password w-100">
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    name="password">
-                <i
-                    class="fas fa-eye-slash"
-                    onclick="hide_password()"
-                    style="display: none; position: absolute; right: 5%; top: 50%; transform: translateY(-50%); cursor: pointer"></i>
-
-                <i
-                    class="far fa-eye show_password"
-                    onclick="show_password()"
-                    style="position: absolute; right: 5%; top: 50%; transform: translateY(-50%); cursor: pointer"></i>
-            </div>
-            @error('password')
-            <div
-                class="invalid-feedback mx-auto d-block"
-                style="width: 90%; margin-top: -1rem">
-                <strong>{{ $message }}</strong>
-            </div>
-            @enderror
-
-            <div
-                class="d-flex flex-column flex-sm-row"
-                style="row-gap: 0.6rem; column-gap: 1rem">
-                <div
-                    id="chaptcha-img"
-                    class="d-flex justify-content-center justify-content-sm-start align-items-center"
-                    style="column-gap: 1rem">
-                    <img
-                        src=""
-                        alt="chaptcha image"
-                        width="150px"
-                        height="50px"
-                        class="mb-0"
-                        style="border: 1px solid #1E4588">
-                    <a
-                        href="javascript:void(0)"
-                        onclick="refreshCaptcha()"
-                        class="btn btn-sm btn-primary"
-                        title="Refresh Captcha">
-                        <i class="fas fa-sync"></i>
-                    </a>
-                </div>
-                <input
-                    type="text"
-                    name="captcha"
-                    id="captcha"
-                    class="form-control form-group"
-                    placeholder="Masukkan angka yang muncul, di sini"
-                    autocomplete="off">
-            </div>
-
-            <div
-                class="form-group button w-100 border-0 mt-2"
-                style="background: none !important; column-gap: 1rem">
-                <button
-                    class="mt-0 w-100 fw-bold"
-                    style="background: #1E4588; border-radius: 7px; color: white"
-                    onclick="submitForm()"
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <link rel="stylesheet" href="{{ asset('css/crmhq/vendors_css.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/crmhq/tailwind.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/crmhq/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/crmhq/skin_color.css') }}">
+</head>
+<body
+    class="hold-transition theme-primary bg-img"
+    style="background-image: url('{{ asset('img/bg-kemnaker.png') }}')"
+>
+    <div class="login-card login-dark">
+        <div class="login-main">
+            <div class="theme-form">
+                <img
+                    src="{{ asset('img/logo-kemnaker-biru.png') }}"
+                    class="mx-auto w-64 mb-20 pb-20"
+                    alt="Kemnaker Logo"
                 >
-                    Masuk
-                </button>
-                <div
-                    class="w-100 dropdown">
-                    <button
-                        type="button"
-                        id="dropdownRegister"
-                        style="width: 100%; border-radius: 7px; background: #a9c0e9; color: #333"
-                        class="mt-0 dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">Daftar</button>
+                <div class="relative w-full">
+                    {{-- <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Email Address</label> --}}
+                    <input
+                        type="email"
+                        id="input-label"
+                        class="border-1 py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                        placeholder="email@domain.com"
+                    >
                 </div>
+                <label class="font-medium block mb-1 mt-4 text-gray-700" for="password">
+                    Password
+                </label>
+                <div class="relative w-full">
+                    <input
+                        class=" border-1 rounded w-full py-3 px-3 leading-tight border-gray-300 bg-gray-100 focus:outline-none focus:border-indigo-700 focus:bg-white text-gray-700 pr-16 font-mono js-password"
+                        id="password"
+                        type="password"
+                        name="login[password]"
+                        autocomplete="off"
+                        placeholder="*********"
+                    />
+                </div>
+                <div class="form-group mt-7 flex items-center justify-between">
+                    <div class="checkbox flex items-center p-0">
+                        <input id="checkbox1" type="checkbox" class="mr-2">
+                        <label class="text-muted" for="checkbox1">Remember password</label>
+                    </div>
+                    <a class="link text-blue-500" href="#">Forgot password?</a>
+                </div>
+                
+                <div class="text-end mt-6">
+                    <button
+                        class="btn btn-dark btn-block rounded-md text-white w-full"
+                        type="submit"
+                        onclick="submitForm()"
+                    >
+                        Sign in
+                    </button>
+                </div>
+                <p class="mt-4 !mb-0 text-center">
+                    Don't have account?
+                    <a class="ms-2 text-blue-500" href="#">Create Account</a>
+                </p>
             </div>
-
-            @if (Route::has('password.request'))
-            <div
-                class="w-100 d-flex justify-content-center"
-                style="column-gap: 0.6rem">
-                <a
-                    href=""
-                    class="fw-bold">Lupa Password?</a>
-            </div>
-            @endif
         </div>
     </div>
-</div>
-@endsection
-@section('customjs')
-    <script src="{{ asset('js/login/index.js') }}"></script>
-
     <script>
-        const screen = window.innerWidth
-        const logoImage1 = document.querySelector('.logo-image1')
-        const logoImage2 = document.querySelector('.logo-image2')
-
-        if (screen <= 412) {
-            logoImage1.style.display = 'none'
-            logoImage2.style.display = 'block'
-        }
-
-        function submitForm(el)
+        function submitForm(e)
         {
-            submitFormLoader()
             setTimeout(() => {
                 window.location.href = '/administrator';
             }, 300)
         }
-
-        async function getCaptcha() {
-            try {
-                const response = await fetch(route('captcha'))
-                const blob = await response.blob()
-
-                hideFormLoader()
-
-                const url = URL.createObjectURL(blob)
-
-                const captchaImage = document.querySelector('#chaptcha-img img')
-                captchaImage.src = url
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        getCaptcha()
-
-        function refreshCaptcha() {
-            getCaptcha()
-
-            const captchaInput = document.querySelector('#captcha')
-            captchaInput.value = ''
-        }
     </script>
-@endsection
+    <script src="{{ asset('js/crmhq/vendors.min.js') }}"></script>
+</body>
+</html>
