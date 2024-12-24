@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
     /**
@@ -23,8 +21,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (role('administrator') || role('pimpinan_polri')){
-            return redirect()->route('administrator');
+        if (role('administrator') || role('pimpinan_polri')) {
+            return redirect()->route('dashboard-kemnaker.index');
         }
 
         if (role('bhabinkamtibmas_mutasi')) {
@@ -33,6 +31,4 @@ class HomeController extends Controller
 
         return redirect()->route(auth()->user()->role());
     }
-
-
 }

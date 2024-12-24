@@ -76,7 +76,7 @@
         function submitForm(e)
         {
             setTimeout(() => {
-                window.location.href = '/administrator';
+                window.location.href = "{{ route('dashboard-kemnaker.index') }}";
             }, 300)
         }
     </script>

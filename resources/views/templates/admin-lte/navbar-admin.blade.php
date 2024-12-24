@@ -3,7 +3,7 @@
 @endpush
 <header class="main-header">
     <div class="flex items-center logo-box justify-start">
-        <a href="{{ route('administrator') }}" class="logo">
+        <a href="{{ route('dashboard-kemnaker.index') }}" class="logo">
             <div class="logo-mini w-64">
                 <img src="{{ asset('img/logo-mini.png') }}" alt="logo">
             </div>
