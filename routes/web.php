@@ -32,7 +32,7 @@ Route::prefix('dashboard-kemnaker')
     ->name('dashboard-kemnaker.')
     ->group(function () {
         Route::get('/', fn () => redirect()->route('dashboard-kemnaker.rekapitulasi-keuangan'))->name('index');
-        Route::get('rekapitulasi-keuangan', fn () => view('administrator.index'))->name('rekapitulasi-keuangan');
+        Route::get('rekapitulasi-keuangan', fn () => view('dashboard-kemnaker.rekapitulasi-keuangan.index'))->name('rekapitulasi-keuangan');
         Route::get('bmn', fn () => redirect()->route('dashboard-kemnaker.rekapitulasi-keuangan'))->name('bmn');
         Route::get('sdm', fn () => redirect()->route('dashboard-kemnaker.rekapitulasi-keuangan'))->name('sdm');
         Route::get('kpi', fn () => redirect()->route('dashboard-kemnaker.rekapitulasi-keuangan'))->name('kpi');
