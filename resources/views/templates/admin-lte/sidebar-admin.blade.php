@@ -88,7 +88,7 @@
                     <li class="treeview">
                         <a href="#" class="!flex items-center space-x-2">
                             <i data-feather="database"></i>
-                            <span class="inline-block text-wrap break-words">Entry<br>Data</span>
+                            <span class="inline-block text-wrap break-words">Entry Data<br>Dashboard</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-right pull-right"></i>
                             </span>
