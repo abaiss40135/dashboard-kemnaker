@@ -343,7 +343,7 @@
                             </tr>
                             <tr>
                                 <td class="text-center">4</td>
-                                <td class="text-center"><span style="cursor: pointer; text-decoration: underline;" class="text-blue" onclick="changeTable2()">DITJEN PHI & JAMSOS TK</span></td>
+                                <td class="text-center"><span style="cursor: pointer; text-decoration: underline;" class="text-primary" onclick="changeTable2()">DITJEN PHI & JAMSOS TK</span></td>
                                 <td class="text-center">100</td>
                                 <td class="text-center">71.43</td>
                                 <td class="text-center">84.15</td>
