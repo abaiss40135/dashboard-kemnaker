@@ -4,7 +4,7 @@
     </div>
     <div class="box-body pt-0 summery-box">
         <div class="overflow-x-auto">
-            <table class="table b-1 border-dark table-bordered w-full" id="table-pemanfaatan">
+            <table class="table table-striped b-1 border-dark table-bordered w-full" id="table-pemanfaatan">
                 <thead class="text-base uppercase bg-dark">
                     <tr>
                         <th scope="col" rowspan="2">NO</th>

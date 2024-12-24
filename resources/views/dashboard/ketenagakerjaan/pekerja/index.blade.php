@@ -43,6 +43,44 @@
             <canvas id="trainingChart" class="!h-[30rem]"></canvas>
         </div>
     </div>
+    <div class="box rounded-2xl">
+        <div class="box-body summery-box">
+            <div class="overflow-x-auto">
+                <table class="table table-striped b-1 border-dark table-bordered w-full" id="table-pekerja">
+                    <thead class="text-base uppercase bg-dark">
+                        <tr>
+                            <th scope="col" rowspan="2">Provinsi</th>
+                            <th scope="col" colspan="3">Jenis Jelamin</th>
+                            <th scope="col" colspan="3">Klasifikasi Perkotaan/Perdesaan</th>
+                            <th scope="col" colspan="7">Pendidikan tertinggi yang ditamatkan hasil perbaikan</th>
+                            <th scope="col" colspan="4">Pernah ikut pelatihan atau kursus dan mendapatkan sertifikat</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Laki-Laki</th>
+                            <th scope="col">Perempuan</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Perkotaan</th>
+                            <th scope="col">Perdesaan</th>
+                            <th scope="col">Total</th>
+                            <th scope="col"><= SD</th>
+                            <th scope="col">SMP</th>
+                            <th scope="col">SMU</th>
+                            <th scope="col">SMK</th>
+                            <th scope="col">Diploma I/II/III</th>
+                            <th scope="col">Universitas (DIV/S1/S2/S3)</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">pernah dan mendapatkan sertifikat</th>
+                            <th scope="col">pernah tetapi tidak mendapatkan sertifikat</th>
+                            <th scope="col">tidak pernah</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-pekerja-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('customjs')
@@ -352,7 +390,7 @@
                 region: { urban: 76986, rural: 921042 },
                 training: { gotCert: 18360, didNotGetCert: 5260, never: 974408 },
             },
-        ];
+        ]
 
         const commonOptions = {
             responsive: true,
@@ -380,18 +418,18 @@
                             const divisions = [
                                 { divisor: 1000000, suffix: ' Juta' },
                                 { divisor: 1000, suffix: ' Ribu' }
-                            ];
+                            ]
 
-                            const match = divisions.find(d => value >= d.divisor);
+                            const match = divisions.find(d => value >= d.divisor)
 
-                            return match ? (value / match.divisor) + match.suffix : value;
+                            return match ? (value / match.divisor) + match.suffix : value
                         }
                     }
                 }
             }
         }
 
-        const genderChart = document.getElementById('genderChart');
+        const genderChart = document.getElementById('genderChart')
         new Chart(genderChart, {
             type: 'bar',
             data: {
@@ -412,9 +450,9 @@
                 ]
             },
             options: commonOptions
-        });
+        })
 
-        const educationChart = document.getElementById('educationChart');
+        const educationChart = document.getElementById('educationChart')
         new Chart(educationChart, {
             type: 'bar',
             data: {
@@ -459,9 +497,9 @@
                 ]
             },
             options: commonOptions
-        });
+        })
 
-        const regionChart = document.getElementById('regionChart');
+        const regionChart = document.getElementById('regionChart')
         new Chart(regionChart, {
             type: 'bar',
             data: {
@@ -482,9 +520,9 @@
                 ]
             },
             options: commonOptions
-        });
+        })
 
-        const trainingChart = document.getElementById('trainingChart');
+        const trainingChart = document.getElementById('trainingChart')
         new Chart(trainingChart, {
             type: 'bar',
             data: {
@@ -511,6 +549,72 @@
                 ]
             },
             options: commonOptions
-        });
+        })
+
+        const number2Indonesian = (number) => new Intl.NumberFormat('id-ID').format(number)
+
+        const tableContainer = document.querySelector('#table-pekerja-body')
+
+        const acc = {
+            id: 99,
+            name: "Total (Indonesia)",
+            gender: { male: 0, female: 0, total: 0 },
+            education: { sd: 0, smp: 0, smu: 0, smk: 0, diploma: 0, sarjana: 0, total: 0 },
+            region: { urban: 0, rural: 0, total: 0 },
+            training: { gotCert: 0, didNotGetCert: 0, never: 0, total: 0 },
+        }
+
+        const updateAcc = (key, values) => {
+            Object.keys(values).forEach(subKey => {
+                acc[key][subKey] += values[subKey]
+            })
+        }
+
+        const appendRow = (data, isDark = false) => {
+            const row = document.createElement('tr')
+
+            if (isDark) {
+                row.classList.add('bg-dark')
+            }
+
+            row.innerHTML = `
+                <td class="text-center">${data.name}</td>
+                <td class="text-center">${number2Indonesian(data.gender.male)}</td>
+                <td class="text-center">${number2Indonesian(data.gender.female)}</td>
+                <td class="text-center">${number2Indonesian(data.gender.total)}</td>
+                <td class="text-center">${number2Indonesian(data.education.sd)}</td>
+                <td class="text-center">${number2Indonesian(data.education.smp)}</td>
+                <td class="text-center">${number2Indonesian(data.education.smu)}</td>
+                <td class="text-center">${number2Indonesian(data.education.smk)}</td>
+                <td class="text-center">${number2Indonesian(data.education.diploma)}</td>
+                <td class="text-center">${number2Indonesian(data.education.sarjana)}</td>
+                <td class="text-center">${number2Indonesian(data.education.total)}</td>
+                <td class="text-center">${number2Indonesian(data.region.urban)}</td>
+                <td class="text-center">${number2Indonesian(data.region.rural)}</td>
+                <td class="text-center">${number2Indonesian(data.region.total)}</td>
+                <td class="text-center">${number2Indonesian(data.training.gotCert)}</td>
+                <td class="text-center">${number2Indonesian(data.training.didNotGetCert)}</td>
+                <td class="text-center">${number2Indonesian(data.training.never)}</td>
+                <td class="text-center">${number2Indonesian(data.training.total)}</td>
+            `
+
+            tableContainer.append(row)
+        }
+
+        data.forEach(provinsi => {
+            provinsi.gender.total = provinsi.gender.male + provinsi.gender.female
+            provinsi.education.total = Object.values(provinsi.education).slice(0, 6).reduce((sum, value) => sum + value, 0)
+            provinsi.region.total = provinsi.region.urban + provinsi.region.rural
+            provinsi.training.total = Object.values(provinsi.training).slice(0, 3).reduce((sum, value) => sum + value, 0)
+
+            updateAcc('gender', provinsi.gender.total)
+            updateAcc('education', provinsi.education.total)
+            updateAcc('region', provinsi.region.total)
+            updateAcc('training', provinsi.training.total)
+
+            appendRow(provinsi)
+        })
+
+        appendRow(acc, true)
     </script>
 @endsection

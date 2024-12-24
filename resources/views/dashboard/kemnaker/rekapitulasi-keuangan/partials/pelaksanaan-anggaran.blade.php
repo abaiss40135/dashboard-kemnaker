@@ -5,7 +5,7 @@
     </div>
     <div class="box-body pt-0 summery-box">
         <div class="overflow-x-auto">
-            <table class="table b-1 border-dark table-bordered w-full" id="table-2-parent">
+            <table class="table table-striped b-1 border-dark table-bordered w-full" id="table-2-parent">
                 <thead class="text-base uppercase bg-dark">
                     <tr>
                         <th scope="col" rowspan="2">NO</th>
@@ -125,7 +125,7 @@
                     </tr>
                 </tbody>
             </table>
-            <table class="table b-1 border-dark table-bordered w-full hidden" id="table-2-child">
+            <table class="table table-striped b-1 border-dark table-bordered w-full hidden" id="table-2-child">
                 <thead class="text-base uppercase bg-dark">
                     <tr>
                         <th scope="col">NO</th>
