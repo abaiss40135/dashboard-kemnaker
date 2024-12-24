@@ -52,18 +52,13 @@
 
     @stack('modals')
 
-    <script src="{{ asset('vendor/chartjs/chart.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
-
 	<script src="{{ asset('js/crmhq/vendors.min.js') }}"></script>
 	<script src="{{ asset('assets/icons/feather-icons/feather.min.js') }}"></script>
 	<script src="{{ asset('assets/vendor_components/Flot/jquery.flot.js') }}"></script>
 	<script src="{{ asset('assets/vendor_components/Flot/jquery.flot.resize.js') }}"></script>
 	<script src="{{ asset('assets/vendor_components/Flot/jquery.flot.pie.js') }}"></script>
 	<script src="{{ asset('assets/vendor_components/Flot/jquery.flot.categories.js') }}"></script>
-	<script src="{{ asset('assets/vendor_components/echarts/dist/echarts-en.min.js') }}"></script>
-	<script src="{{ asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
 

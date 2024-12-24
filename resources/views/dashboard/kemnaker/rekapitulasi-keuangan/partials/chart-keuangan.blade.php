@@ -11,24 +11,26 @@
             </button>
         </div>
 
-        <canvas id="chart-rekap-binpolmas" class="max-h-[450px]"></canvas>
+        <canvas id="chart-rekap-keuangan" class="max-h-[450px]"></canvas>
         <canvas id="chart-prov-2" class="hidden max-h-[450px]"></canvas>
 
-        <div class="text-center preloader" id="binpolmas-chart-preloader">
+        <div class="text-center preloader" id="keuangan-chart-preloader">
             <img class="mx-auto max-w-full" alt="img-preloader" src="{{asset('img/ellipsis-preloader.gif')}}">
         </div>
     </div>
 </div>
 
 @push('scripts')
+    <script src="{{ asset('vendor/chartjs/chart.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <script>
-        const chartRekapBinpolmas = document.querySelector('#chart-rekap-binpolmas')
+        const chartRekapKeuangan = document.querySelector('#chart-rekap-keuangan')
         const resetChartbtn = document.querySelector('#reset-chart-btn')
-        const preLoader = document.querySelector('#binpolmas-chart-preloader')
+        const preLoader = document.querySelector('#keuangan-chart-preloader')
 
-        let binpolmasType;
+        let keuanganType;
 
-        const indexBinpolmas = [
+        const indexKeuangan = [
             'data_fkpm_kawasan',
             'data_fkpm_wilayah',
             'data_pranata',
@@ -73,8 +75,8 @@
             }
         }
 
-        const barChartRekapBinpolmas = chartRekapBinpolmas.getContext('2d')
-        const initChartRekapBinpolmas = (data, labels, label, dataPetugasPolmas = null, chartColors = null, useLabel = true) => {
+        const barChartRekapKeuangan = chartRekapKeuangan.getContext('2d')
+        const initChartRekapKeuangan = (data, labels, label, dataPetugasPolmas = null, chartColors = null, useLabel = true) => {
             const colors = chartColors ?? generateRandomColor(labels.length)
 
             const twinColors = {
@@ -90,7 +92,7 @@
 
             let dataset = [];
             // special case supervisor_polmas, there data has data types array.
-            if(Array.isArray(data[0]) && binpolmasType === 'supervisor_polmas') {
+            if(Array.isArray(data[0]) && keuanganType === 'supervisor_polmas') {
                 const polsek = data.map(num => num[0]);
                 const polres = data.map(num => num[1]);
 
@@ -111,7 +113,7 @@
                     }
                 ]
             }
-            else if(binpolmasType === 'pembina_polmas' && label.includes('Per Polda')) {
+            else if(keuanganType === 'pembina_polmas' && label.includes('Per Polda')) {
                 let chart1 = {}
                 let chart2 = {}
 
@@ -150,7 +152,7 @@
                     borderWidth: 1,
                 }]
             }
-            else { // special case when dataPetugasPolmas is true and only run when binpolmasType is petugas polmas wilayah
+            else { // special case when dataPetugasPolmas is true and only run when keuanganType is petugas polmas wilayah
                 dataset = [
                     {
                         label: 'Jumlah RW Polmas Wilayah',
@@ -175,7 +177,7 @@
                 ChartDataLabels,
                 'datalabels'
             ] : ['datalabels'];
-            const chart = new Chart(barChartRekapBinpolmas, {
+            const chart = new Chart(barChartRekapKeuangan, {
                 type: 'bar',
                 data: data,
                 format: 'idr',
@@ -232,22 +234,22 @@
                                     // ketika data chart adalah nol, maka tidak terjadi action apapun
                                     if(context.dataset.data[index] === 0) return
 
-                                    if(binpolmasType === undefined || (binpolmasType !== indexBinpolmas[index] && type === 'Rekapitulasi Data Laporan Subdit Binpolmas')) {
-                                        binpolmasType = indexBinpolmas[index]
+                                    if(keuanganType === undefined || (keuanganType !== indexKeuangan[index] && type === 'Rekapitulasi Data Laporan Subdit Keuangan')) {
+                                        keuanganType = indexKeuangan[index]
                                     }
 
-                                    if(type.includes('Rekapitulasi Data Laporan Subdit Binpolmas'))
+                                    if(type.includes('Rekapitulasi Data Laporan Subdit Keuangan'))
                                     {
                                         @if(empty(auth()->user()) || (auth()->user()->haveRoleID(\App\Models\User::BAGOPSNALEV_MABES) || auth()->user()->haveRoleID(\App\Models\User::ADMIN)))
                                         resetChartbtn.removeAttribute('disabled')
                                         chart.destroy()
 
-                                        initChartPolda(binpolmasType);
+                                        initChartPolda(keuanganType);
                                         @elseif(auth()->user() && auth()->user()->haveRoleID(\App\Models\User::BINPOLMAS_POLDA))
                                         resetChartbtn.removeAttribute('disabled')
                                         chart.destroy()
 
-                                        initChartPolres(binpolmasType, '{{auth()->user()->personel->polda}}', index);
+                                        initChartPolres(keuanganType, '{{auth()->user()->personel->polda}}', index);
                                         @endif
                                     }
                                     else if(type.toLowerCase().includes('polda'))
@@ -256,7 +258,7 @@
                                         chart.destroy()
 
                                         const polda = Object.keys(context.dataset.data)[index]
-                                        initChartPolres(binpolmasType, polda, index);
+                                        initChartPolres(keuanganType, polda, index);
                                     }
                                 },
                                 enter: function(context, event) {
@@ -293,19 +295,19 @@
                         resetChartbtn.removeAttribute('disabled')
                         chart.destroy()
 
-                        initChartPolda(binpolmasType);
+                        initChartPolda(keuanganType);
                     }
                     else if(index === 3 && (type === 'Barang Pagu' || type === 'Barang Real')) // index 2 => chart sub pertama, ditjen PHI
                     {
                         resetChartbtn.removeAttribute('disabled')
                         chart.destroy()
 
-                        initChartPolres(binpolmasType);
+                        initChartPolres(keuanganType);
                     }
                 }
             }
 
-            chartRekapBinpolmas.onclick = clickBarChart
+            chartRekapKeuangan.onclick = clickBarChart
             resetChartbtn.onclick = resetChart
         }
 
@@ -340,7 +342,7 @@
             resetChartbtn.setAttribute('disabled', 'true')
 
             resetChartbtn.setAttribute('disabled', false)
-            initChartRekapBinpolmas(chartData, chartData.labels, 'Realisasi Anggaran Per Jenis Belanja')
+            initChartRekapKeuangan(chartData, chartData.labels, 'Realisasi Anggaran Per Jenis Belanja')
         }
 
         const chartPoldaBgColors = [
@@ -415,10 +417,10 @@
 
             $('.chart-title').html('Perbandingan Pagu dan Realisasi Barang Per Eselon 1')
 
-            initChartRekapBinpolmas(chartData, chartData.labels, 'Perbandingan Pagu dan Realisasi Barang Per Eselon 1')
+            initChartRekapKeuangan(chartData, chartData.labels, 'Perbandingan Pagu dan Realisasi Barang Per Eselon 1')
         }
 
-        const initChartPolres = (binpolmasType, polda, indexChartPolda) => {
+        const initChartPolres = (keuanganType, polda, indexChartPolda) => {
             preLoader.classList.remove('hidden')
             resetChartbtn.classList.add('hidden')
 
@@ -448,15 +450,15 @@
             resetChartbtn.classList.remove('hidden')
 
             $('.chart-title').html('Perbandingan Pagu dan Realisasi Per Disnakertrans Provinsi')
-            initChartRekapBinpolmas(chartData, chartData.labels, 'Perbandingan Pagu dan Realisasi Per Disnakertrans Provinsi', null, null, false)
+            initChartRekapKeuangan(chartData, chartData.labels, 'Perbandingan Pagu dan Realisasi Per Disnakertrans Provinsi', null, null, false)
         }
 
-        const initChartSubData = (binpolmasType, polres) => {
+        const initChartSubData = (keuanganType, polres) => {
             preLoader.classList.remove('hidden')
             resetChartbtn.classList.add('hidden')
 
-            axios.get(route('chart-binpolmas.tahap4', {
-                type: binpolmasType,
+            axios.get(route('chart-keuangan.tahap4', {
+                type: keuanganType,
                 polres: polres
             }))
                 .then(res => res.data)
@@ -478,17 +480,17 @@
                         values.push(value)
                     })
 
-                    initChartRekapBinpolmas(values, labels, 'Rekapitulasi Data Binpolmas - Sub Menu')
+                    initChartRekapKeuangan(values, labels, 'Rekapitulasi Data Keuangan - Sub Menu')
                 })
         }
 
 
 
         const resetChart = () => {
-            let chart = Chart.getChart("chart-rekap-binpolmas");
+            let chart = Chart.getChart("chart-rekap-keuangan");
 
             chart.destroy()
-            binpolmasType = null
+            keuanganType = null
             initChartFirstTime()
         }
 
