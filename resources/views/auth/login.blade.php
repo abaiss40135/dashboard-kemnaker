@@ -22,16 +22,16 @@
         <div class="login-main">
             <div class="theme-form">
                 <img
-                    src="{{ asset('img/logo-kemnaker-biru.png') }}"
+                    src="{{ asset('img/logo-dashboard.png') }}"
                     class="mx-auto w-64 mb-20 pb-20"
                     alt="Kemnaker Logo"
                 >
                 <div class="relative w-full">
-                    {{-- <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Email Address</label> --}}
+                    <label for="input-label" class="block text-sm font-medium mb-2">Email Address/Username</label>
                     <input
-                        type="email"
+                        type="text"
                         id="input-label"
-                        class="border-1 py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                        class="border-1 py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                         placeholder="email@domain.com"
                     >
                 </div>

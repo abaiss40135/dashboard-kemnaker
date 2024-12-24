@@ -4,13 +4,11 @@
 <header class="main-header">
     <div class="flex items-center logo-box justify-start">
         <a href="{{ route('administrator') }}" class="logo">
-            <div class="logo-mini w-40">
-                <span class="light-logo">
-                    <img src="{{ asset('images/icons/icon-192x192.png') }}" alt="logo">
-                </span>
-                <span class="dark-logo">
-                    <img src="{{ asset('images/icons/icon-192x192.png') }}" alt="logo">
-                </span>
+            <div class="logo-mini w-64">
+                <img src="{{ asset('img/logo-mini.png') }}" alt="logo">
+            </div>
+            <div class="logo-lg">
+                <img src="{{ asset('img/dashboard-text.png') }}" alt="logo">
             </div>
         </a>
     </div>
@@ -134,8 +132,14 @@
                             aria-labelledby="dropdownDividerButton">
                             <li>
                                 <a href="#" class="items-center m-0 text-base flex px-4 py-2 hover:bg-gray-100">
-                                    <i class="fa fa-user-circle-o me-3 text-xl" aria-hidden="true"> </i>
+                                    <i class="fa fa-user-circle-o me-3 text-xl" aria-hidden="true"></i>
                                     My Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/" class="items-center m-0 text-base flex px-4 py-2 hover:bg-red-100">
+                                    <i class="fa-solid fa-arrow-right-from-bracket me-3 text-xl" aria-hidden="true"></i>
+                                    Log Out
                                 </a>
                             </li>
                         </ul>
