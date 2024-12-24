@@ -607,10 +607,10 @@
             provinsi.region.total = provinsi.region.urban + provinsi.region.rural
             provinsi.training.total = Object.values(provinsi.training).slice(0, 3).reduce((sum, value) => sum + value, 0)
 
-            updateAcc('gender', provinsi.gender.total)
-            updateAcc('education', provinsi.education.total)
-            updateAcc('region', provinsi.region.total)
-            updateAcc('training', provinsi.training.total)
+            updateAcc('gender', provinsi.gender)
+            updateAcc('education', provinsi.education)
+            updateAcc('region', provinsi.region)
+            updateAcc('training', provinsi.training)
 
             appendRow(provinsi)
         })
