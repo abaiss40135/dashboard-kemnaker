@@ -4,91 +4,91 @@
             <div class="multinav-scroll" style="height: 98%;">
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="treeview">
-                        <a href="#" class="flex items-center space-x-2">
+                        <a href="#" class="!flex items-center">
                             <i data-feather="pie-chart"></i>
-                            <span class="flex-1 break-words text-wrap">Dashboard Kemnaker</span>
+                            <span class="inline-block text-wrap break-words">Dashboard Kemnaker</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-right pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
                             <li>
-                                <a href="#" class="flex items-center space-x-2">
+                                <a href="#" class="!flex items-center space-x3">
                                     <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                    <span class="flex-1 break-words text-wrap">Rekapitulasi Keuangan</span>
+                                    <span class="inline-block text-wrap break-words">Rekapitulasi Keuangan</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center space-x-2">
+                                <a href="#" class="!flex items-center">
                                     <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                    <span class="flex-1 break-words text-wrap">BMN</span>
+                                    <span class="inline-block text-wrap break-words">BMN</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center space-x-2">
+                                <a href="#" class="!flex items-center">
                                     <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                    <span class="flex-1 break-words text-wrap">SDM</span>
+                                    <span class="inline-block text-wrap break-words">SDM</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center space-x-2">
+                                <a href="#" class="!flex items-center">
                                     <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                    <span class="flex-1 break-words text-wrap">KPI</span>
+                                    <span class="inline-block text-wrap break-words">KPI</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center space-x-2">
+                                <a href="#" class="!flex items-center">
                                     <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                    <span class="flex-1 break-words text-wrap">TLHP</span>
+                                    <span class="inline-block text-wrap break-words">TLHP</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center space-x-2">
+                                <a href="#" class="!flex items-center">
                                     <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                    <span class="flex-1 break-words text-wrap">Status Pengelolaan Proyek</span>
+                                    <span class="inline-block text-wrap break-words">Status Pengelolaan Proyek</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="treeview">
-                        <a href="#" class="flex items-center space-x-2">
+                        <a href="#" class="!flex items-center">
                             <i data-feather="grid"></i>
-                            <span class="flex-1 break-words text-wrap">Dashboard Ketenagakerjaan</span>
+                            <span class="inline-block text-wrap break-words">Dashboard Ketenagakerjaan</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-right pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
                             <li>
-                                <a href="#" class="flex items-center space-x-2">
+                                <a href="#" class="!flex items-center">
                                     <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                    <span class="flex-1 break-words text-wrap">Penduduk yang Bekerja</span>
+                                    <span class="inline-block text-wrap break-words">Penduduk yang Bekerja</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center space-x-2">
+                                <a href="#" class="!flex items-center">
                                     <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                    <span class="flex-1 break-words text-wrap">Rata-rata Upah Sebulan</span>
+                                    <span class="inline-block text-wrap break-words">Rata-rata Upah Sebulan</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center space-x-2">
+                                <a href="#" class="!flex items-center">
                                     <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                    <span class="flex-1 break-words text-wrap">Rata-rata Jam Kerja Seminggu</span>
+                                    <span class="inline-block text-wrap break-words">Rata-rata Jam Kerja Seminggu</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center space-x-2">
+                                <a href="#" class="!flex items-center">
                                     <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                    <span class="flex-1 break-words text-wrap">Pengangguran Terbuka</span>
+                                    <span class="inline-block text-wrap break-words">Pengangguran Terbuka</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="treeview">
-                        <a href="#" class="flex items-center space-x-2">
+                        <a href="#" class="!flex items-center">
                             <i data-feather="database"></i>
-                            <span class="flex-1 break-words text-wrap">Entry Data</span>
+                            <span class="inline-block text-wrap break-words">Entry Data</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-right pull-right"></i>
                             </span>
@@ -96,15 +96,15 @@
                         
                         <ul class="treeview-menu">
                             <li>
-                                <a href="#" class="flex items-center space-x-2">
+                                <a href="#" class="!flex items-center">
                                     <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                    <span class="flex-1 break-words text-wrap">Dashboard Kemnaker</span>
+                                    <span class="inline-block text-wrap break-words">Dashboard Kemnaker</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center space-x-2">
+                                <a href="#" class="!flex items-center">
                                     <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                    <span class="flex-1 break-words text-wrap">Dashboard Ketenagakerjaan</span>
+                                    <span class="inline-block text-wrap break-words">Dashboard Ketenagakerjaan</span>
                                 </a>
                             </li>
                         </ul>
