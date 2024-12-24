@@ -1,7 +1,6 @@
 @php use App\Helpers\Constants; @endphp
 @extends('templates.admin-lte.admin', ['title' => 'Selamat datang di Dashboard Kementerian Ketenagakerjaan Republik Indonesia '])
 @section('customcss')
-    @include('assets.css.datetimepicker')
     @include('assets.css.select2')
 @endsection
 @section('content')
