@@ -1,10 +1,10 @@
-@extends('templates.admin-lte.base', ['title' => $title ?? ''])
+@extends('templates.dashboard.base', ['title' => $title ?? ''])
 @section('headUtils')
     @yield('customcss')
 @endsection
 @section('navUtils')
-    @include('templates.admin-lte.navbar-admin')
-    @include('templates.admin-lte.sidebar-admin')
+    @include('templates.dashboard.navbar-admin')
+    @include('templates.dashboard.sidebar-admin')
 @endSection
 @section('content')
     @yield('content')
