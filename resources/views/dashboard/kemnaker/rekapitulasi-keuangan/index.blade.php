@@ -16,12 +16,12 @@
             </div>
         </div>
 
-        @include('dashboard-kemnaker.rekapitulasi-keuangan.partials.recap-links')
-        @include('dashboard-kemnaker.rekapitulasi-keuangan.partials.filters')
-        @include('dashboard-kemnaker.rekapitulasi-keuangan.partials.recaps')
-        @include('dashboard-kemnaker.rekapitulasi-keuangan.partials.chart-keuangan')
-        @include('dashboard-kemnaker.rekapitulasi-keuangan.partials.realisasi-anggaran')
-        @include('dashboard-kemnaker.rekapitulasi-keuangan.partials.pelaksanaan-anggaran')
-        @include('dashboard-kemnaker.rekapitulasi-keuangan.partials.realisasi-pengadaan')
+        @include('dashboard.kemnaker.rekapitulasi-keuangan.partials.recap-links')
+        @include('dashboard.kemnaker.rekapitulasi-keuangan.partials.filters')
+        @include('dashboard.kemnaker.rekapitulasi-keuangan.partials.recaps')
+        @include('dashboard.kemnaker.rekapitulasi-keuangan.partials.chart-keuangan')
+        @include('dashboard.kemnaker.rekapitulasi-keuangan.partials.realisasi-anggaran')
+        @include('dashboard.kemnaker.rekapitulasi-keuangan.partials.pelaksanaan-anggaran')
+        @include('dashboard.kemnaker.rekapitulasi-keuangan.partials.realisasi-pengadaan')
     </div>
 @endsection
