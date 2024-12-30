@@ -225,7 +225,7 @@
 
         const pegawaiAcc = {
             id: 8,
-            name: 'Total',
+            name: 'Total PNS',
             position: { structural: 0, functionalSpecific: 0, functionalGeneral: 0 },
             class: { iv: 0, iii: 0, ii: 0, i: 0 },
             gender: { male: 0, female: 0 },
@@ -235,7 +235,7 @@
             total: 0
         }
 
-        const updateAcc = (key, values) => {
+        const updatePegawaiAcc = (key, values) => {
             if (typeof values === 'object') {
                 Object.keys(values).forEach(subKey => {
                     pegawaiAcc[key][subKey] += values[subKey]
@@ -247,8 +247,12 @@
             pegawaiAcc[key] += values
         }
 
-        const pegawaiAppendRow = (table, data) => {
+        const pegawaiAppendRow = (table, data, isDark) => {
             const row = document.createElement('tr')
+
+            if (isDark) {
+                row.classList.add('bg-dark')
+            }
 
             if (table == pegawaiTableContainer1) {
                 row.innerHTML = `
@@ -302,19 +306,19 @@
         pegawai.forEach((unit) => {
             unit.total = unit.gender.male + unit.gender.female
 
-            updateAcc('position', unit.position)
-            updateAcc('class', unit.class)
-            updateAcc('gender', unit.gender)
-            updateAcc('education', unit.education)
-            updateAcc('religion', unit.religion)
-            updateAcc('age', unit.age)
-            updateAcc('total', unit.total)
+            updatePegawaiAcc('position', unit.position)
+            updatePegawaiAcc('class', unit.class)
+            updatePegawaiAcc('gender', unit.gender)
+            updatePegawaiAcc('education', unit.education)
+            updatePegawaiAcc('religion', unit.religion)
+            updatePegawaiAcc('age', unit.age)
+            updatePegawaiAcc('total', unit.total)
 
             pegawaiAppendRow(pegawaiTableContainer1, unit)
             pegawaiAppendRow(pegawaiTableContainer2, unit)
         })
 
-        pegawaiAppendRow(pegawaiTableContainer1, pegawaiAcc)
-        pegawaiAppendRow(pegawaiTableContainer2, pegawaiAcc)
+        pegawaiAppendRow(pegawaiTableContainer1, pegawaiAcc, true)
+        pegawaiAppendRow(pegawaiTableContainer2, pegawaiAcc, true)
     </script>
 @endpush

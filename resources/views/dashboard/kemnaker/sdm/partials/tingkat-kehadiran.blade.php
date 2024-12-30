@@ -209,8 +209,12 @@
             total: 0
         }
 
-        const kehadiranAppendRow = (table, data) => {
+        const kehadiranAppendRow = (table, data, isDark = false) => {
             const row = document.createElement('tr')
+
+            if (isDark) {
+                row.classList.add('bg-dark')
+            }
 
             row.innerHTML = `
                 <td>${data.name}</td>
@@ -252,6 +256,6 @@
         kehadiranAcc.tanpaKeterangan = countPercentage(kehadiranAcc.tanpaKeterangan)
         kehadiranAcc.total = countPercentage(kehadiranAcc.total)
 
-        kehadiranAppendRow(kehadiranTableContainer, kehadiranAcc)
+        kehadiranAppendRow(kehadiranTableContainer, kehadiranAcc, true)
     </script>
 @endpush
