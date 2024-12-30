@@ -1,9 +1,9 @@
 <div class="box rounded-2xl">
     <div class="box-header flex b-0 justify-start items-center">
-        <h2 class="mt-0">Rekap Tingkat Kehadiran ASN</h2>
+        <h2 class="mt-0">Rekap PNS Belum Naik Golongan</h2>
     </div>
     <div class="box-body pt-0 summery-box">
-        <h5 class="text-center font-bold text-lg chart-title">Tingkat Kehadiran ASN Kemenaker - Minggu II November 2024</h5>
+        <h5 class="text-center font-bold text-lg chart-title">Jumlah Pegawai dan Pegawai yang Belum/Tidak Naik Pangkat Per Unit</h5>
         <div id="not-yet-promoted-chart"></div>
     </div>
 
@@ -130,6 +130,9 @@
             plotOptions: {
                 bar: {
                     horizontal: false,
+                    borderRadius: 12,
+                    borderRadiusApplication: 'end',
+                    borderRadiusWhenStacked: 'all'
                 },
             },
             stroke: {

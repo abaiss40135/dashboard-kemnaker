@@ -7,4 +7,5 @@
     @include('dashboard.kemnaker.sdm.partials.tingkat-kehadiran')
     @include('dashboard.kemnaker.sdm.partials.profile-pegawai')
     @include('dashboard.kemnaker.sdm.partials.belum-naik-golongan')
+    @include('dashboard.kemnaker.sdm.partials.permasalahan-kepangkatan')
 @endsection
