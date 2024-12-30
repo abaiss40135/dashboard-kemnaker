@@ -5,4 +5,5 @@
     @include('dashboard.kemnaker.sdm.partials.filters')
     @include('dashboard.kemnaker.sdm.partials.recaps')
     @include('dashboard.kemnaker.sdm.partials.tingkat-kehadiran')
+    @include('dashboard.kemnaker.sdm.partials.profile-pegawai')
 @endsection

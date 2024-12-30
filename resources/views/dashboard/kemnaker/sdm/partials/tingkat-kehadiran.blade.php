@@ -11,7 +11,7 @@
 
     <div class="box-body summery-box">
         <div class="overflow-x-auto">
-            <table class="table table-striped b-1 border-dark table-bordered w-full" id="table-pekerja">
+            <table class="table table-striped b-1 border-dark table-bordered w-full">
                 <thead class="text-base uppercase bg-dark">
                     <tr>
                         <th scope="col" rowspan="2">Unit Kerja Eselon 1</th>
@@ -120,7 +120,7 @@
 
         const kehadiranChartOptions = {
             chart: {
-                height: 350,
+                height: 450,
                 type: 'bar',
                 stacked: true,
             },
@@ -133,31 +133,33 @@
                 width: 1,
                 colors: ['#fff']
             },
-            series: [{
-                name: 'WFO',
-                data: kehadiran.map((unit) => unit.wfo)
-            }, {
-                name: 'WFH',
-                data: kehadiran.map((unit) => unit.wfh)
-            }, {
-                name: 'Cuti',
-                data: kehadiran.map((unit) => unit.cuti)
-            }, {
-                name: 'Tugas Belajar',
-                data: kehadiran.map((unit) => unit.tugasBelajar)
-            }, {
-                name: 'Dinar Luar',
-                data: kehadiran.map((unit) => unit.dinasLuar)
-            }, {
-                name: 'Tanpa Keterangan',
-                data: kehadiran.map((unit) => unit.tanpaKeterangan)
-            }],
+            series: [
+                {
+                    name: 'WFO',
+                    data: kehadiran.map((unit) => unit.wfo)
+                }, {
+                    name: 'WFH',
+                    data: kehadiran.map((unit) => unit.wfh)
+                }, {
+                    name: 'Cuti',
+                    data: kehadiran.map((unit) => unit.cuti)
+                }, {
+                    name: 'Tugas Belajar',
+                    data: kehadiran.map((unit) => unit.tugasBelajar)
+                }, {
+                    name: 'Dinar Luar',
+                    data: kehadiran.map((unit) => unit.dinasLuar)
+                }, {
+                    name: 'Tanpa Keterangan',
+                    data: kehadiran.map((unit) => unit.tanpaKeterangan)
+                }
+            ],
             xaxis: {
                 categories: kehadiran.map((unit) => unit.name),
             },
             yaxis: {
-                labels: {
-                    formatter: (val) => `${val}%`
+                title: {
+                    text: 'Percentage (%)'
                 },
                 max: 100
             },
@@ -176,6 +178,9 @@
             },
             fill: {
                 opacity: 1
+            },
+            dataLabels: {
+                enabled: false
             },
             legend: {
                 position: 'right',
