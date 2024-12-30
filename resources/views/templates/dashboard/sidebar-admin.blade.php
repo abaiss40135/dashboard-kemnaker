@@ -7,8 +7,8 @@
                         <x-nav-item feather-icon="pie-chart" title="Dashboard<br>Kemnaker" />
                         <ul class="treeview-menu">
                             <x-nav-link route="dashboard.kemnaker.rekapitulasi-keuangan" title="Rekapitulasi Keuangan" />
-                            <x-nav-link route="dashboard.kemnaker.bmn" title="BMN" />
                             <x-nav-link route="dashboard.kemnaker.sdm" title="SDM" />
+                            <x-nav-link route="dashboard.kemnaker.bmn" title="BMN" />
                             <x-nav-link route="dashboard.kemnaker.kpi" title="KPI" />
                             <x-nav-link route="dashboard.kemnaker.tlhp" title="TLHP" />
                             <x-nav-link route="dashboard.kemnaker.pengelolaan-proyek" title="Status Pengelolaan Proyek" />
