@@ -7,7 +7,7 @@
                 title="Sistem Informasi Tenaga Kerja Nasional (SITKN)"
                 desc="Proyek pengembangan platform digital untuk mendata tenaga kerja secara nasional, termasuk pencari kerja, perusahaan, dan pelatihan yang tersedia. Sistem ini akan mempermudah penyelarasan kebutuhan tenaga kerja dengan peluang kerja di seluruh Indonesia."
                 action="data-modal-target='proyek-modal' data-modal-toggle='proyek-modal'"
-                img-src="https://placehold.co/600x400/png"
+                img-src="https://picsum.photos/600/400"
             />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -15,7 +15,7 @@
                 title="Program Digitalisasi Pelatihan Kerja"
                 desc="Pembuatan modul pelatihan kerja berbasis digital untuk meningkatkan keterampilan tenaga kerja. Program ini bertujuan menyediakan akses pelatihan secara daring bagi pekerja dan calon pekerja di berbagai daerah, khususnya yang berada di wilayah terpencil."
                 action="data-modal-target='proyek-modal' data-modal-toggle='proyek-modal'"
-                img-src="https://placehold.co/600x400/png"
+                img-src="https://picsum.photos/600/401"
             />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -23,7 +23,7 @@
                 title="Revitalisasi Balai Latihan Kerja (BLK)"
                 desc="Proyek peningkatan infrastruktur dan fasilitas di Balai Latihan Kerja (BLK) untuk mendukung pelatihan berbasis teknologi terkini, seperti otomasi industri, pengelolaan data, dan keterampilan digital."
                 action="data-modal-target='proyek-modal' data-modal-toggle='proyek-modal'"
-                img-src="https://placehold.co/600x400/png"
+                img-src="https://picsum.photos/600/402"
             />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -31,7 +31,7 @@
                 title="Pusat Informasi dan Layanan Pengaduan Pekerja Migran"
                 desc="    Proyek pengembangan pusat informasi dan layanan pengaduan yang terintegrasi untuk pekerja migran Indonesia. Sistem ini mencakup saluran komunikasi berbasis aplikasi dan layanan daring untuk menangani permasalahan hukum, pembayaran, atau keselamatan pekerja migran."
                 action="data-modal-target='proyek-modal' data-modal-toggle='proyek-modal'"
-                img-src="https://placehold.co/600x400/png"
+                img-src="https://picsum.photos/600/403"
             />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -39,7 +39,7 @@
                 title="Program Ketenagakerjaan Inklusif"
                 desc="I    nisiatif untuk meningkatkan akses pekerjaan bagi penyandang disabilitas dengan melibatkan perusahaan-perusahaan mitra. Proyek ini mencakup pelatihan kerja khusus, kemitraan dengan sektor swasta, dan advokasi kebijakan proyek inklusif."
                 action="data-modal-target='proyek-modal' data-modal-toggle='proyek-modal'"
-                img-src="https://placehold.co/600x400/png"
+                img-src="https://picsum.photos/600/404"
             />
         </div>
     </div>
