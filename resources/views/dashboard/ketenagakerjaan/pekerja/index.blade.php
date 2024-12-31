@@ -10,7 +10,7 @@
                 Jumlah Penduduk yang Bekerja berdasarkan Jenis Kelamin Per Provinsi
             </h5>
 
-            <canvas id="genderChart" class="!h-[30rem]"></canvas>
+            <div id="genderChart"></div>
         </div>
 
         <hr>
@@ -20,7 +20,7 @@
                 Jumlah Penduduk yang Bekerja berdasarkan Klasifikasi Pendidikan Terakhir Per Provinsi
             </h5>
 
-            <canvas id="educationChart" class="!h-[30rem]"></canvas>
+            <div id="educationChart"></div>
         </div>
         
         <hr>
@@ -30,7 +30,7 @@
                 Jumlah Penduduk yang Bekerja berdasarkan Klasifikasi Tempat Kerja Per Provinsi
             </h5>
 
-            <canvas id="regionChart" class="!h-[30rem]"></canvas>
+            <div id="regionChart"></div>
         </div>
 
         <hr>
@@ -40,7 +40,7 @@
                 Jumlah Penduduk yang Bekerja berdasarkan Riwayat Pelatihan atau Kursus
             </h5>
 
-            <canvas id="trainingChart" class="!h-[30rem]"></canvas>
+            <div id="trainingChart"></div>
         </div>
     </div>
     <div class="box rounded-2xl">
@@ -84,7 +84,7 @@
 @endsection
 
 @section('customjs')
-    <script src="{{ asset('vendor/chartjs/chart.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
     <script>
         const data = [{
                 id: 11,
@@ -393,163 +393,106 @@
         ]
 
         const commonOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom'
+            chart: {
+                height: 450,
+                type: 'bar',
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
                 },
             },
-            scales: {
-                x: {
-                    ticks: {
-                        maxRotation: 45,
-                        minRotation: 45
+            stroke: {
+                width: 1,
+                colors: ['#fff']
+            },
+            xaxis: {
+                categories: data.map((province) => province.name),
+            },
+            yaxis: {
+                labels: {
+                    formatter: function (value) {
+                        if (value >= 1000000) return (value / 1000000).toFixed(1) + 'jt'
+                        if (value >= 1000) return (value / 1000).toFixed(1) + 'rb'
+
+                        return value;
                     }
                 },
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: false,
-                        text: 'Pekerja'
-                    },
-                    ticks: {
-                        callback: function (value) {
-                            const divisions = [
-                                { divisor: 1000000, suffix: ' Juta' },
-                                { divisor: 1000, suffix: ' Ribu' }
-                            ]
-
-                            const match = divisions.find(d => value >= d.divisor)
-
-                            return match ? (value / match.divisor) + match.suffix : value
-                        }
-                    }
+            },
+            fill: {
+                opacity: 1
+            },
+            dataLabels: {
+                enabled: false
+            },
+            legend: {
+                position: 'bottom',
+                itemMargin: {
+                    horizontal: 12,
+                    vertical: 0
                 }
-            }
+            },
         }
 
-        const genderChart = document.getElementById('genderChart')
-        new Chart(genderChart, {
-            type: 'bar',
-            data: {
-                labels: data.map(province => province.name),
-                datasets: [
-                    {
-                        label: 'Laki-laki',
-                        data: data.map(province => province.gender.male),
-                        backgroundColor: '#4d7cff',
-                        borderWidth: 0,
-                    },
-                    {
-                        label: 'Perempuan',
-                        data: data.map(province => province.gender.female),
-                        backgroundColor: '#51ce8a',
-                        borderWidth: 0,
-                    }
-                ]
-            },
-            options: commonOptions
-        })
+        const genderChart = new ApexCharts(
+            document.querySelector('#genderChart'),
+            {
+                ...commonOptions,
+                series: [
+                    { name: 'Laki-laki', data: data.map((province) => province.gender.male)},
+                    { name: 'Perempuan', data: data.map((province) => province.gender.female) }
+                ],
+                colors: ['#4d7cff', '#51ce8a'],
+            }
+        )
+        genderChart.render()
 
-        const educationChart = document.getElementById('educationChart')
-        new Chart(educationChart, {
-            type: 'bar',
-            data: {
-                labels: data.map(province => province.name),
-                datasets: [
-                    {
-                        label: 'SD',
-                        data: data.map(province => province.education.sd),
-                        backgroundColor: '#4d7cff',
-                        borderWidth: 0,
-                    },
-                    {
-                        label: 'SMP',
-                        data: data.map(province => province.education.smp),
-                        backgroundColor: '#51ce8a',
-                        borderWidth: 0,
-                    },
-                    {
-                        label: 'SMU',
-                        data: data.map(province => province.education.smu),
-                        backgroundColor: '#733aeb',
-                        borderWidth: 0,
-                    },
-                    {
-                        label: 'SMK',
-                        data: data.map(province => province.education.smk),
-                        backgroundColor: '#f2426d',
-                        borderWidth: 0,
-                    },
-                    {
-                        label: 'Diploma I/II/III',
-                        data: data.map(province => province.education.diploma),
-                        backgroundColor: '#fec801',
-                        borderWidth: 0,
-                    },
-                    {
-                        label: 'Universitas (DIV/S1/S2/S3)',
-                        data: data.map(province => province.education.sarjana),
-                        backgroundColor: '#ffB84d',
-                        borderWidth: 0,
-                    },
-                ]
-            },
-            options: commonOptions
-        })
+        const educationChart = new ApexCharts(
+            document.querySelector('#educationChart'),
+            {
+                ...commonOptions,
+                stroke: {
+                    width: 0,
+                },
+                series: [
+                    { name: 'SD', data: data.map((province) => province.education.sd) },
+                    { name: 'SMP', data: data.map((province) => province.education.smp) },
+                    { name: 'SMU', data: data.map((province) => province.education.smu) },
+                    { name: 'SMK', data: data.map((province) => province.education.smk) },
+                    { name: 'Diploma I/II/III', data: data.map((province) => province.education.diploma) },
+                    { name: 'Universitas (DIV/S1/S2/S3)', data: data.map((province) => province.education.sarjana) },
+                ],
+                colors: ['#4d7cff', '#51ce8a', '#733aeb', '#f2426d', '#fec801', '#ffB84d'],
+            }
+        )
+        educationChart.render()
 
-        const regionChart = document.getElementById('regionChart')
-        new Chart(regionChart, {
-            type: 'bar',
-            data: {
-                labels: data.map(province => province.name),
-                datasets: [
-                    {
-                        label: 'Perkotaan',
-                        data: data.map(province => province.region.urban),
-                        backgroundColor: '#51ce8a',
-                        borderWidth: 0,
-                    },
-                    {
-                        label: 'Perdesaan',
-                        data: data.map(province => province.region.rural),
-                        backgroundColor: '#733aeb',
-                        borderWidth: 0,
-                    },
-                ]
-            },
-            options: commonOptions
-        })
+        const regionChart = new ApexCharts(
+            document.querySelector('#regionChart'),
+            {
+                ...commonOptions,
+                series: [
+                    { name: 'Perkotaan', data: data.map((province) => province.region.urban) },
+                    { name: 'Perdesaan', data: data.map((province) => province.region.rural) }
+                ],
+                colors: ['#51ce8a', '#733aeb'],
+            }
+        );
+        regionChart.render();
 
-        const trainingChart = document.getElementById('trainingChart')
-        new Chart(trainingChart, {
-            type: 'bar',
-            data: {
-                labels: data.map(province => province.name),
-                datasets: [
-                    {
-                        label: 'Pernah dan Mendapat Sertifikat',
-                        data: data.map(province => province.training.gotCert),
-                        backgroundColor: '#733aeb',
-                        borderWidth: 0,
-                    },
-                    {
-                        label: 'Pernah dan Mendapat Sertifikat',
-                        data: data.map(province => province.training.didNotGetCert),
-                        backgroundColor: '#f2426d',
-                        borderWidth: 0,
-                    },
-                    {
-                        label: 'Tidak Pernah',
-                        data: data.map(province => province.training.never),
-                        backgroundColor: '#fec801',
-                        borderWidth: 0,
-                    },
-                ]
-            },
-            options: commonOptions
-        })
+        const trainingChart = new ApexCharts(
+            document.querySelector('#trainingChart'),
+            {
+                ...commonOptions,
+                series: [
+                    { name: 'Pernah dan Mendapat Sertifikat', data: data.map((province) => province.training.gotCert) },
+                    { name: 'Pernah tetapi Tidak Mendapatkan Sertifikat', data: data.map((province) => province.training.didNotGetCert) },
+                    { name: 'Tidak Pernah ', data: data.map((province) => province.training.never) }
+                ],
+                colors: ['#51ce8a', '#733aeb'],
+            }
+        );
+        trainingChart.render();
 
         const number2Indonesian = (number) => new Intl.NumberFormat('id-ID').format(number)
 
