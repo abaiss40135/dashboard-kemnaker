@@ -27,19 +27,30 @@
         <div class="navbar-custom-menu r-side inline-flex items-center float-right">
             <ul class="nav navbar-nav inline-flex items-center">
                 <li class="dropdown notifications-menu btn-group ">
-                    <a id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                    <a
+                        id="notificationDropdown"
+                        data-dropdown-toggle="dropdown"
                         class="btn-primary-light svg-bt-icon hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-3 text-center inline-flex items-center"
-                        title="Notifications" type="button">
+                        title="Notifications"
+                        type="button"
+                    >
                         <div
-                            class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full top-[1.4rem] end-[0.7rem]">
-                            8</div><i data-feather="bell"></i>
+                            class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full top-[1.4rem] end-[0.7rem]"
+                        >
+                            8
+                        </div>
+                        <i data-feather="bell"></i>
                         <div class="pulse-wave"></div>
                     </a>
 
-                    <div id="dropdown"
-                        class="dropdown-menu z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow !w-max">
-                        <ul class="py-2 text-sm text-gray-700"
-                            aria-labelledby="dropdownDefaultButton">
+                    <div
+                        id="dropdown"
+                        class="dropdown-menu z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow !w-max"
+                    >
+                        <ul
+                            class="py-2 text-sm text-gray-700"
+                            aria-labelledby="notificationDropdown"
+                        >
                             <li class="header">
                                 <div class="p-20 border-b">
                                     <div class="flexbox">

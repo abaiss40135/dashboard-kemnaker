@@ -108,11 +108,11 @@
         ];
 
         const barChartData = [
-            { group: "Mockup Design", todo: 20, doing: 15, done: 25 },
-            { group: "Insfrastruktur", todo: 15, doing: 10, done: 20 },
-            { group: "Code Implementation", todo: 10, doing: 5, done: 15 },
-            { group: "Testing", todo: 25, doing: 20, done: 30 },
-            { group: "Documentation", todo: 30, doing: 25, done: 35 },
+            { group: "UI Design", todo: 20, doing: 15, done: 25 },
+            { group: "Infra", todo: 15, doing: 10, done: 20 },
+            { group: "Code", todo: 10, doing: 5, done: 15 },
+            { group: "Test", todo: 25, doing: 20, done: 30 },
+            { group: "Docs", todo: 30, doing: 25, done: 35 },
         ];
 
         const pieChart = echarts.init(document.querySelector("#proyek-pie-chart"));
@@ -197,26 +197,29 @@
                 top: 10
             },
             xAxis: {
-                type: 'category',
-                data: barChartData.map((data) => data.group),
+                type: 'value',
             },
             yAxis: {
-                type: 'value',
+                type: 'category',
+                data: barChartData.map((data) => data.group),
             },
             series: [
                 {
                     name: 'Todo',
                     type: 'bar',
+                    stack: 'tasks',
                     data: barChartData.map((data) => data.todo),
                 },
                 {
                     name: 'Doing',
                     type: 'bar',
+                    stack: 'tasks',
                     data: barChartData.map((data) => data.doing),
                 },
                 {
                     name: 'Done',
                     type: 'bar',
+                    stack: 'tasks',
                     data: barChartData.map((data) => data.done),
                 },
             ],

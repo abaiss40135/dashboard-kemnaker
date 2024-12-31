@@ -130,9 +130,6 @@
             plotOptions: {
                 bar: {
                     horizontal: false,
-                    borderRadius: 12,
-                    borderRadiusApplication: 'end',
-                    borderRadiusWhenStacked: 'all'
                 },
             },
             stroke: {
