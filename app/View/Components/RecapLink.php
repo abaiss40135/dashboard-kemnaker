@@ -15,6 +15,7 @@ class RecapLink extends Component
         public string $title,
         public string $icon,
         public string $bg,
+        public ?string $attrs = null
     ) {
     }
 

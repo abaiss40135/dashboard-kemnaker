@@ -9,12 +9,12 @@
 
     <title>{{ config('app.long_name') }}</title>
 
+    <link rel="stylesheet" href="{{ asset('css/crmhq/vendors_css.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ asset('css/crmhq/tailwind.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/crmhq/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('css/crmhq/skin_color.css') }}">
     <link rel="stylesheet" href="{{ asset('css/crmhq/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/crmhq/tailwind.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/crmhq/vendors_css.css') }}">
 
     <link rel="icon" href="{{ asset('img/logo_kemnaker_saja_biru.png') }}?v=2">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
