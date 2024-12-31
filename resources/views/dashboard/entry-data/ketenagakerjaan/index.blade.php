@@ -6,31 +6,31 @@
         title="Penduduk yang Bekerja"
         icon="fa-briefcase"
         bg="bg-primary-light"
-        attrs="data-modal-target='ketenagakerjaan-modal' data-modal-toggle='ketenagakerjaan-modal'"    
+        attrs="data-modal-target='ketenagakerjaan-modal' data-modal-toggle='ketenagakerjaan-modal'"
     />
     <x-recap-link
         title="Rata-rata Upah Sebulan"
         icon="fa-coins"
         bg="bg-info-light"
-        attrs="data-modal-target='ketenagakerjaan-modal' data-modal-toggle='ketenagakerjaan-modal'"    
+        attrs="data-modal-target='ketenagakerjaan-modal' data-modal-toggle='ketenagakerjaan-modal'"
     />
     <x-recap-link
         title="Rata-rata Jam Kerja Seminggu"
         icon="fa-stopwatch"
         bg="bg-warning-light"
-        attrs="data-modal-target='ketenagakerjaan-modal' data-modal-toggle='ketenagakerjaan-modal'"    
+        attrs="data-modal-target='ketenagakerjaan-modal' data-modal-toggle='ketenagakerjaan-modal'"
     />
     <x-recap-link
         title="Jumlah Pengangguran Terbuka"
         icon="fa-tachometer-alt"
         bg="bg-warning-light"
-        attrs="data-modal-target='ketenagakerjaan-modal' data-modal-toggle='ketenagakerjaan-modal'"    
+        attrs="data-modal-target='ketenagakerjaan-modal' data-modal-toggle='ketenagakerjaan-modal'"
     />
 </div>
 @endsection
 
 @push('modals')
-<div
+    <div
         id="ketenagakerjaan-modal"
         data-modal-backdrop="static"
         tabindex="-1"
