@@ -108,11 +108,11 @@
         ];
 
         const barChartData = [
-            { group: "Planning", todo: 20, doing: 15, done: 25 },
-            { group: "Analysis", todo: 15, doing: 10, done: 20 },
-            { group: "Design", todo: 10, doing: 5, done: 15 },
-            { group: "Implementation", todo: 25, doing: 20, done: 30 },
             { group: "Maintenance", todo: 30, doing: 25, done: 35 },
+            { group: "Implementation", todo: 25, doing: 20, done: 30 },
+            { group: "Design", todo: 10, doing: 5, done: 15 },
+            { group: "Analysis", todo: 15, doing: 10, done: 20 },
+            { group: "Planning", todo: 20, doing: 15, done: 25 },
         ];
 
         const pieChart = echarts.init(document.querySelector("#proyek-pie-chart"));
