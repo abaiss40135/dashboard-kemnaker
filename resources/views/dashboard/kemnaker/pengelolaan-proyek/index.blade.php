@@ -7,7 +7,7 @@
                 title="Sistem Informasi Tenaga Kerja Nasional (SITKN)"
                 desc="Proyek pengembangan platform digital untuk mendata tenaga kerja secara nasional, termasuk pencari kerja, perusahaan, dan pelatihan yang tersedia. Sistem ini akan mempermudah penyelarasan kebutuhan tenaga kerja dengan peluang kerja di seluruh Indonesia."
                 action="data-modal-target='proyek-modal' data-modal-toggle='proyek-modal'"
-                img-src="https://picsum.photos/600/400"
+                img-src="{{ asset('images/projects/sitkn.jpg') }}"
             />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -15,7 +15,7 @@
                 title="Program Digitalisasi Pelatihan Kerja"
                 desc="Pembuatan modul pelatihan kerja berbasis digital untuk meningkatkan keterampilan tenaga kerja. Program ini bertujuan menyediakan akses pelatihan secara daring bagi pekerja dan calon pekerja di berbagai daerah, khususnya yang berada di wilayah terpencil."
                 action="data-modal-target='proyek-modal' data-modal-toggle='proyek-modal'"
-                img-src="https://picsum.photos/600/401"
+                img-src="{{ asset('images/projects/digital.jpg') }}"
             />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -23,23 +23,23 @@
                 title="Revitalisasi Balai Latihan Kerja (BLK)"
                 desc="Proyek peningkatan infrastruktur dan fasilitas di Balai Latihan Kerja (BLK) untuk mendukung pelatihan berbasis teknologi terkini, seperti otomasi industri, pengelolaan data, dan keterampilan digital."
                 action="data-modal-target='proyek-modal' data-modal-toggle='proyek-modal'"
-                img-src="https://picsum.photos/600/402"
+                img-src="{{ asset('images/projects/blk.jpeg') }}"
             />
         </div>
         <div class="col-md-6 col-lg-3">
             <x-card-link
                 title="Pusat Informasi dan Layanan Pengaduan Pekerja Migran"
-                desc="    Proyek pengembangan pusat informasi dan layanan pengaduan yang terintegrasi untuk pekerja migran Indonesia. Sistem ini mencakup saluran komunikasi berbasis aplikasi dan layanan daring untuk menangani permasalahan hukum, pembayaran, atau keselamatan pekerja migran."
+                desc="Proyek pengembangan pusat informasi dan layanan pengaduan yang terintegrasi untuk pekerja migran Indonesia. Sistem ini mencakup saluran komunikasi berbasis aplikasi dan layanan daring untuk menangani permasalahan hukum, pembayaran, atau keselamatan pekerja migran."
                 action="data-modal-target='proyek-modal' data-modal-toggle='proyek-modal'"
-                img-src="https://picsum.photos/600/403"
+                img-src="{{ asset('images/projects/migrant-worker.jpg') }}"
             />
         </div>
         <div class="col-md-6 col-lg-3">
             <x-card-link
                 title="Program Ketenagakerjaan Inklusif"
-                desc="I    nisiatif untuk meningkatkan akses pekerjaan bagi penyandang disabilitas dengan melibatkan perusahaan-perusahaan mitra. Proyek ini mencakup pelatihan kerja khusus, kemitraan dengan sektor swasta, dan advokasi kebijakan proyek inklusif."
+                desc="Inisiatif untuk meningkatkan akses pekerjaan bagi penyandang disabilitas dengan melibatkan perusahaan-perusahaan mitra. Proyek ini mencakup pelatihan kerja khusus, kemitraan dengan sektor swasta, dan advokasi kebijakan proyek inklusif."
                 action="data-modal-target='proyek-modal' data-modal-toggle='proyek-modal'"
-                img-src="https://picsum.photos/600/404"
+                img-src="{{ asset('images/projects/inklusif.jpg') }}"
             />
         </div>
     </div>
@@ -108,11 +108,11 @@
         ];
 
         const barChartData = [
-            { group: "UI Design", todo: 20, doing: 15, done: 25 },
-            { group: "Infra", todo: 15, doing: 10, done: 20 },
-            { group: "Code", todo: 10, doing: 5, done: 15 },
-            { group: "Test", todo: 25, doing: 20, done: 30 },
-            { group: "Docs", todo: 30, doing: 25, done: 35 },
+            { group: "Planning", todo: 20, doing: 15, done: 25 },
+            { group: "Analysis", todo: 15, doing: 10, done: 20 },
+            { group: "Design", todo: 10, doing: 5, done: 15 },
+            { group: "Implementation", todo: 25, doing: 20, done: 30 },
+            { group: "Maintenance", todo: 30, doing: 25, done: 35 },
         ];
 
         const pieChart = echarts.init(document.querySelector("#proyek-pie-chart"));
@@ -143,7 +143,7 @@
         const sCurveChart = echarts.init(document.querySelector("#proyek-s-curve-chart"));
         sCurveChart.setOption({
             title: {
-                text: 'Project Progress',
+                text: 'S-Curved Project Progress',
                 top: 10,
                 left: 10,
             },
